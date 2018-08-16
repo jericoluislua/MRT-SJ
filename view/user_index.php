@@ -1,19 +1,23 @@
-<article class="hreview open special">
-	<?php if (empty($users)): ?>
-		<div class="dhd">
-			<h2 class="item title">Hoopla! Keine User gefunden.</h2>
-		</div>
-	<?php else: ?>
-		<?php foreach ($users as $user): ?>
-			<div class="panel panel-default">
-				<div class="panel-heading"><?= $user->uname;?></div>
-				<div class="panel-body">
-					<p>
-						<a title="Löschen" href="/user/delete?id=<?= $user->id ?>">Löschen</a>
-					</p>
-				</div>
-			</div>
-		<?php endforeach ?>
-	<?php endif ?>
-
-</article>
+<form class="form-horizontal" action="/user/doCreate" method="post">
+    <div class="component" data-html="true">
+        <div class="form-group">
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="email">Username</label>
+                <div class="col-md-4">
+                    <input id="email" name="email" type="text" placeholder="Username" class="form-control input-md">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="password">Password</label>
+                <div class="col-md-4">
+                    <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="send">&nbsp;</label>
+                <div class="col-md-4">
+                    <input id="send" name="send" type="submit" class="btn btn-primary">
+                </div>
+            </div>
+        </div>
+</form>

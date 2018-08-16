@@ -15,10 +15,9 @@ class UserController
         $view = new View('user_index');
         $view->title = 'Login';
         $view->heading = 'Login';
-        $view->users = $userRepository->readAll();
+        $username = htmlspecialchars($_POST['email']);
         $view->display();
     }
-
     public function create()
     {
         $view = new View('user_create');
