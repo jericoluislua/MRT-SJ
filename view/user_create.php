@@ -4,19 +4,19 @@
 		<div class="form-group">
 		  <label class="col-md-2 control-label" for="email">Username</label>
 		  <div class="col-md-4">
-		  	<input id="email" name="email" type="text" placeholder="Username" class="form-control input-md">
+		  	<input id="email" name="email" type="text" placeholder="Username" class="form-control input-md" required>
 		  </div>
 		</div>
 		<div class="form-group">
 		  <label class="col-md-2 control-label" for="password">Password</label>
 		  <div class="col-md-4">
-		  	<input id="password" name="password" type="password" placeholder="Password" class="form-control input-md">
+		  	<input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required>
 		  </div>
 		</div>
 		<div class="form-group">
 		  <label class="col-md-2 control-label" for="password">Password</label>
 		  <div class="col-md-4">
-		  	<input id="password2" name="password2" type="password" placeholder="Password" class="form-control input-md">
+		  	<input id="password2" name="password2" type="password" placeholder="Password" class="form-control input-md" required>
 		  </div>
 		</div>
 		<div class="form-group">

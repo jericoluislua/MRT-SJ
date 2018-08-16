@@ -10,7 +10,7 @@
 
 
         <div class="col s6">
-            <a href="./user">
+            <a href="./user/login">
             <div class="btn signbtn">
                 <p>SignIn</p>
             </div>
