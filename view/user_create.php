@@ -22,7 +22,7 @@
 		<div class="form-group">
 	      <label class="col-md-2 control-label" for="send">&nbsp;</label>
 		  <div class="col-md-4">
-		    <input id="Sign Up" name="signup" type="submit" class="btn btn-primary">
+		    <input id="send" name="signup" type="submit" class="btn btn-primary" value="SIGN UP">
 		  </div>
 		</div>
 	</div>

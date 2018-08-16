@@ -79,6 +79,7 @@ class UserController
                     if($userRepository->existingUsername($username) == false){
                         $userRepository->create($username, $password, $isAdmin);
                         // goes directly to the login page (HTTP 302)
+                        $this->doError("Succesfully registered!");
                         header('Location: /user/login');
                     }
                 }
