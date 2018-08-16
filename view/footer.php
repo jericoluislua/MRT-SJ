@@ -1,6 +1,8 @@
         <hr>
         <footer>
-          <p>&copy; ICT Berufsbildungcenter AG 2016</p>
+          <p>&copy; Copyright MVC Framework from gibb/BBC
+          </br>
+          A project by Jerico Lua & Sivakeerthan Vamanarajasekaran</p>
         </footer>
     </div>
 
