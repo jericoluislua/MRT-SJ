@@ -44,7 +44,7 @@ class UserRepository extends Repository
 
         return $statement->insert_id;
     }
-<<<<<<< HEAD
+
     public function readByName($uname)
     {
         // Query erstellen
@@ -72,7 +72,8 @@ class UserRepository extends Repository
 
         // Den gefundenen Datensatz zurückgeben
         return $row;
-=======
+    }
+
     public function existingUsername($username){
         $query = "SELECT uid FROM $this->tableName WHERE uname = ?";
         $statement = ConnectionHandler::getConnection()->prepare($query);
@@ -86,6 +87,6 @@ class UserRepository extends Repository
             return true;
         }
         return false;
->>>>>>> 52febad34d0d084c01fae6355f51c202801f4271
+
     }
 }
