@@ -5,15 +5,16 @@ require_once '../repository/UserRepository.php';
 /**
  * Siehe Dokumentation im DefaultController.
  */
+
 class UserController
 {
+    public $err = array();
     public function index()
     {
         $userRepository = new UserRepository();
-
         $view = new View('user_index');
-        $view->title = 'Benutzer';
-        $view->heading = 'Benutzer';
+        $view->title = 'Login';
+        $view->heading = 'Login';
         $view->users = $userRepository->readAll();
         $view->display();
     }
@@ -21,27 +22,37 @@ class UserController
     public function create()
     {
         $view = new View('user_create');
-        $view->title = 'Benutzer erstellen';
-        $view->heading = 'Benutzer erstellen';
+        $view->title = 'Registration';
+        $view->heading = 'Registration';
         $view->display();
     }
 
     public function doCreate()
     {
         if ($_POST['send']) {
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
-            $email = $_POST['email'];
+             $username = $_POST['email'];
             $password = $_POST['password'];
-
-            $userRepository = new UserRepository();
-            $userRepository->create($firstName, $lastName, $email, $password);
+            $password2 = $_POST['password2'];
+            if($password==$password2) {
+                $userRepository = new UserRepository();
+                $userRepository->create($username, $password);
+                // Anfrage an die URI /user weiterleiten (HTTP 302)
+                header('Location: /user');
+            }
+            if($password!=$password2){
+                $this->doError("Passwords are not matching!");
+                header('Location: /user/create');
+            }
         }
 
-        // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /user');
+
     }
 
+    public function doError($error){
+        $this->err = array_fill(0,1,$error);
+        session_start();
+        $_SESSION['err'] = $this->err;
+    }
     public function delete()
     {
         $userRepository = new UserRepository();

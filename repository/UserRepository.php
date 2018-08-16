@@ -15,6 +15,7 @@ class UserRepository extends Repository
      */
     protected $tableName = 'user';
 
+
     /**
      * Erstellt einen neuen benutzer mit den gegebenen Werten.
      *
@@ -28,14 +29,14 @@ class UserRepository extends Repository
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
-    public function create($firstName, $lastName, $email, $password)
+    public function create($username, $password)
     {
         $password = sha1($password);
 
-        $query = "INSERT INTO $this->tableName (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO $this->tableName (uname, pw) VALUES (?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ssss', $firstName, $lastName, $email, $password);
+        $statement->bind_param('ss',$username, $password);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);

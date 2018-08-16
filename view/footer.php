@@ -5,6 +5,19 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+        <!--JavaScript at end of body for optimized loading-->
+        <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+        <?php
+        session_start();
+        if(isset($_SESSION['err'])):
+        foreach($_SESSION['err'] as $error):?>
+        <script type="text/javascript">
+            M.toast({html: '<?=$error?>'})
+        </script>
+        <?php endforeach;
+                endif;
+                $_SESSION['err'] = null; ?>
+
   </body>
 </html>
