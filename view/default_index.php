@@ -3,16 +3,16 @@
         <div class="col s6">
             <a href="./user/create">
             <div class="btn signbtn">
-            <p>SignUp</p>
+            <p>Sign Up</p>
             </div>
             </a>
         </div>
 
 
         <div class="col s6">
-            <a href="./user">
+            <a href="./user/login">
             <div class="btn signbtn">
-                <p>SignIn</p>
+                <p>Log In</p>
             </div>
             </a>
         </div>
