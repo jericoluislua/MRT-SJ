@@ -10,7 +10,8 @@ class ChoiceController
 {
     public function index(){
         $view = new View('choice_index');
-
+        $view->title = 'Choice';
+        $view->heading = 'Choice';
         $view->display();
     }
 }
