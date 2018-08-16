@@ -29,19 +29,33 @@ class UserRepository extends Repository
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
-    public function create($username, $password)
+    public function create($username, $password, $isAdmin)
     {
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO $this->tableName (uname, pw) VALUES (?, ?)";
+        $query = "INSERT INTO $this->tableName (uname, pw, isAdmin) VALUES (?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ss',$username, $password);
+        $statement->bind_param('ssi',$username, $password, $isAdmin);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
 
         return $statement->insert_id;
+    }
+    public function existingUsername($username){
+        $query = "SELECT uid FROM $this->tableName WHERE uname = ?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+
+        $statement->bind_param('s', $username);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+        if($result->num_rows >= 1){
+            return true;
+        }
+        return false;
     }
 }
