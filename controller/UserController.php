@@ -9,6 +9,7 @@ require_once '../repository/UserRepository.php';
 class UserController
 {
     public $err = array();
+    public $pregex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/";
     public function index()
     {
         $view = new View('user_index');
@@ -49,18 +50,38 @@ class UserController
 
     public function doCreate()
     {
-        if ($_POST['send']) {
-             $username = $_POST['email'];
-            $password = $_POST['password'];
-            $password2 = $_POST['password2'];
-            if($password==$password2) {
-                $userRepository = new UserRepository();
-                $userRepository->create($username, $password);
-                // Anfrage an die URI /user weiterleiten (HTTP 302)
-                header('Location: /user');
+        if (isset($_POST['signup'])) {
+             $username = htmlspecialchars($_POST['email']);
+            $password = htmlspecialchars($_POST['password']);
+            $password2 = htmlspecialchars($_POST['password2']);
+            if($username == "jericoluislua" || $username == "SVRNM"){
+                $isAdmin = true;
             }
-            if($password!=$password2){
-                $this->doError("Passwords are not matching!");
+            else{
+                $isAdmin = false;
+            }
+            if($password==$password2) {
+                if(preg_match($this->pregex, $password)){
+                    $userRepository = new UserRepository();
+
+                    if($userRepository->existingUsername($username) == true){
+                        $this->doError('Username already exists.');
+                        header('Location: /user/create');
+                    }
+                    if($userRepository->existingUsername($username) == false){
+                        $userRepository->create($username, $password, $isAdmin);
+                        // goes directly to the login page (HTTP 302)
+                        header('Location: /user/login');
+                    }
+                }
+                else{
+                    $this->doError('Your password needs to have the following: 1 upper and lowercase, a digit and consists of 8 characters.');
+                    header('Location: /user/create');
+
+                }
+            }
+            if($password != $password2){
+                $this->doError("Passwords did not match!");
                 header('Location: /user/create');
             }
         }
