@@ -8,5 +8,9 @@
 
 class ChoiceController
 {
+    public function index(){
+        $view = new View('choice_index');
 
+        $view->display();
+    }
 }

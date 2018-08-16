@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="/user/doCreate" method="post">
+<form class="form-horizontal" action="/user/doLogin" method="post">
     <div class="component" data-html="true">
         <div class="form-group">
             <div class="form-group">

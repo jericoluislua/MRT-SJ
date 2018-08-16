@@ -11,12 +11,33 @@ class UserController
     public $err = array();
     public function index()
     {
-        $userRepository = new UserRepository();
         $view = new View('user_index');
         $view->title = 'Login';
         $view->heading = 'Login';
-        $username = htmlspecialchars($_POST['email']);
+
         $view->display();
+    }
+    public function doLogin(){
+        $userRepository = new UserRepository();
+        if(isset($_POST['send'])) {
+            if (isset($_POST['email']) && $_POST['password']) {
+                $username = htmlspecialchars($_POST['email']);
+                $password = htmlspecialchars($_POST['password']);
+                $user = $userRepository->readByName($username);
+                if ($user->uname != null) {
+                    if (password_verify($password, $user->pw)) {
+                        header('Location: /choice');
+                    } else {
+                        $this->doError('Wrong Password!!');
+                        header('Location: /user');
+
+                    }
+                } else {
+                    $this->doError('User does not Exist!!');
+                    header('Location: /user');
+                }
+            }
+        }
     }
     public function create()
     {
