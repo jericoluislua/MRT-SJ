@@ -1,5 +1,3 @@
-<div id="card">
-    <div id="userProfile">
+<div id="userprofile" class="card">
 
-    </div>
 </div>

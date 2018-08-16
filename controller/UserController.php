@@ -12,7 +12,15 @@ class UserController
     public $pregex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/";
     public function index()
     {
-        $view = new View('user_index');
+        $view = new View('user_login');
+        $view->title = 'Login';
+        $view->heading = 'Login';
+
+        $view->display();
+    }
+    public function login()
+    {
+        $view = new View('user_login');
         $view->title = 'Login';
         $view->heading = 'Login';
 
@@ -30,12 +38,12 @@ class UserController
                         header('Location: /choice');
                     } else {
                         $this->doError('Wrong Password!!');
-                        header('Location: /user');
+                        header('Location: /user/login');
 
                     }
                 } else {
                     $this->doError('User does not Exist!!');
-                    header('Location: /user');
+                    header('Location: /user/login');
                 }
             }
         }
