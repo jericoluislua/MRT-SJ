@@ -2,7 +2,7 @@
 </div>
 <div class="choice">
     <div id="profile" class="card-panel">
-        <h1 class="black-text"><?=$uname?></h1>
+        <h1 ><?=$uname?></h1>
         <img src="/images/placeholders/profile-picture.png" class="profile-picture" alt="profile-picture">
     </div>
     <div id="training-canvas" class="card">
