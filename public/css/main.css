@@ -43,6 +43,9 @@ html {
         html body .choice #profile .profile-picture {
           width: 80%;
           height: auto; }
+        html body .choice #profile h1 {
+          font-size: 3em;
+          color: black; }
       html body .choice #training-canvas {
         position: relative;
         display: inline-block;
