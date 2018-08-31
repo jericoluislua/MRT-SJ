@@ -35,6 +35,15 @@ class UserController
                 $user = $userRepository->readByName($username);
                 if ($user->uname != null) {
                     if (password_verify($password, $user->pw)) {
+                        if(!isset($_SESSION['uid'])) {
+                            session_start();
+                            $_SESSION['uid'] = $user->uid;
+                        }
+                        else{
+                            session_destroy();
+                            session_start();
+                            $_SESSION['uid'] = $user->id;
+                        }
                         header('Location: /choice');
                     } else {
                         $this->doError('Wrong Password!!');

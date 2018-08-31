@@ -11,7 +11,9 @@
         <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
         <?php
-        session_start();
+        if(!isset($_SESSION)) {
+            session_start();
+        }
         if(isset($_SESSION['err'])):
         foreach($_SESSION['err'] as $error):?>
         <script type="text/javascript">

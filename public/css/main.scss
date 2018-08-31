@@ -14,6 +14,8 @@ html{
     display:block;
       margin:0;
       padding:0;
+    height:100%;
+    width:100%;
     #header{
       display:inline-block;
       margin:0;
@@ -43,9 +45,39 @@ html{
       }
     }
     .choice{
-      #profile .card{
-        height: 100%;
-        width:2em;
+      height:100%;
+      width:100%;
+      #profile{
+        height: 80%;
+        width: 20em;
+        margin-left: 10px;
+        display:inline-block;
+        position: relative;
+        .profile-picture{
+            width:80%;
+          height:auto;
+        }
+      }
+      #training-canvas{
+        position: relative;
+        display:inline-block;
+        height:100%;
+        width:50em;
+        margin-left:10px;
+        padding:0;
+        .options{
+          width:100%;
+          height:10em;
+          padding:0;
+          vertical-align: middle;
+          text-align: center;
+          span{
+            position: relative;
+            top:40%;
+            font-size: 4em;
+
+          }
+        }
       }
     }
   }
