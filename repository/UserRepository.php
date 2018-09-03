@@ -22,10 +22,9 @@ class UserRepository extends Repository
      * Das Passwort wird vor dem ausführen des Queries noch mit dem SHA1
      *  Algorythmus gehashed.
      *
-     * @param $firstName Wert für die Spalte firstName
-     * @param $lastName Wert für die Spalte lastName
-     * @param $email Wert für die Spalte email
+     * @param $username Wert für die Spalte username
      * @param $password Wert für die Spalte password
+     * @param $isAdmin für admin Rechte
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
