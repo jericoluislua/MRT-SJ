@@ -68,7 +68,7 @@ class UserController
     public function doCreate()
     {
         if (isset($_POST['signup'])) {
-             $username = htmlspecialchars($_POST['email']);
+            $username = htmlspecialchars($_POST['uname']);
             $password = htmlspecialchars($_POST['password']);
             $password2 = htmlspecialchars($_POST['password2']);
             if($username == "jericoluislua" || $username == "SVRNM"){

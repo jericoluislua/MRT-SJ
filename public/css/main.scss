@@ -28,7 +28,6 @@ html{
         text-align: center;
         display:inherit;
         margin: 0;
-        padding:0;
 
       }
     }
@@ -43,6 +42,9 @@ html{
            vertical-align: center;
          }
       }
+      h1{
+        padding-left: 1.37em;
+      }
     }
     .choice{
       height:100%;
@@ -50,12 +52,19 @@ html{
       #profile{
         height: 80%;
         width: 20em;
+        margin-top: 0;
         margin-left: 10px;
         display:inline-block;
         position: relative;
         .profile-picture{
           width:80%;
+<<<<<<< HEAD
           margin:0 auto;
+=======
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+>>>>>>> 893f4478433fe758451fa1bf34bc017c3967b592
           height:auto;
         }
         h1{
@@ -70,6 +79,7 @@ html{
         width:50em;
         margin-left:10px;
         padding:0;
+        margin-top: 14px;
         .options{
           width:100%;
           height:10em;

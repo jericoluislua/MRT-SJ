@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title><?= $title ?> | Bbc MVC</title>
+    <title><?= $title ?> | IDPA BWD</title>
 
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
