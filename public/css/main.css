@@ -44,7 +44,13 @@ html {
         position: relative; }
         html body .choice #profile .profile-picture {
           width: 80%;
+<<<<<<< HEAD
           margin: 0 auto;
+=======
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+>>>>>>> 893f4478433fe758451fa1bf34bc017c3967b592
           height: auto; }
         html body .choice #profile h1 {
           font-size: 3em;
