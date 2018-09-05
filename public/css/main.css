@@ -42,6 +42,7 @@ html {
         position: relative; }
         html body .choice #profile .profile-picture {
           width: 80%;
+          margin: 0 auto;
           height: auto; }
         html body .choice #profile h1 {
           font-size: 3em;
