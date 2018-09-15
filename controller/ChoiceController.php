@@ -22,4 +22,43 @@ class ChoiceController
         }
         $view->display();
     }
+    public function FiPa(){
+        $view = new View('choice_FiPa');
+        $view->title = 'Choice';
+        $view->heading = 'Choice';
+        $userRepository = new UserRepository();
+        if(!isset($_SESSION)){
+            session_start();
+        }
+        if(isset($_SESSION['uid'])) {
+            $view->uname = $userRepository->readById($_SESSION['uid'])->uname;
+        }
+        $view->display();
+    }
+    public function FiBl(){
+        $view = new View('choice_FiBl');
+        $view->title = 'Choice';
+        $view->heading = 'Choice';
+        $userRepository = new UserRepository();
+        if(!isset($_SESSION)){
+            session_start();
+        }
+        if(isset($_SESSION['uid'])) {
+            $view->uname = $userRepository->readById($_SESSION['uid'])->uname;
+        }
+        $view->display();
+    }
+    public function MuCho(){
+        $view = new View('choice_MuCho');
+        $view->title = 'Choice';
+        $view->heading = 'Choice';
+        $userRepository = new UserRepository();
+        if(!isset($_SESSION)){
+            session_start();
+        }
+        if(isset($_SESSION['uid'])) {
+            $view->uname = $userRepository->readById($_SESSION['uid'])->uname;
+        }
+        $view->display();
+    }
 }
