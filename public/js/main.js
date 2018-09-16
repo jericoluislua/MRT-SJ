@@ -83,7 +83,7 @@ $("#answer-div .solut").click(function () {
     $(this).addClass("right-answ");
 });
 $("#answer-div button").click(function (){
-    $(this).addClass("wrong-answ");
+    $("#answer-div button").addClass("wrong-answ");
     $("#answer-div .solut").addClass("right-answ");
     $("#answer-div .solut").removeClass("wrong-answ");
 });
