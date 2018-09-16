@@ -33,24 +33,18 @@ html {
     html body .container h1 {
       padding-left: 1.37em; }
     html body .choice {
-      height: 100%;
       width: 100%; }
       html body .choice #profile {
-        height: 80%;
+        height: 100%;
         width: 20em;
         margin-top: 0;
         margin-left: 10px;
-        display: inline-block;
-        position: relative; }
+        margin-right: 10px;
+        display: inline-block; }
         html body .choice #profile .profile-picture {
           width: 80%;
-<<<<<<< HEAD
           margin: 0 auto;
-=======
-          margin-left: auto;
-          margin-right: auto;
           text-align: center;
->>>>>>> 893f4478433fe758451fa1bf34bc017c3967b592
           height: auto; }
         html body .choice #profile h1 {
           font-size: 3em;
@@ -73,5 +67,118 @@ html {
             position: relative;
             top: 40%;
             font-size: 4em; }
+        html body .choice #training-canvas #FiBl #img-div img {
+          width: 100%;
+          height: auto; }
+        html body .choice #training-canvas #FiBl #answer-div input {
+          width: 80%; }
+        html body .choice #training-canvas #FiPa {
+          z-index: -1; }
+          html body .choice #training-canvas #FiPa .c1 {
+            z-index: -1;
+            height: 100%;
+            width: 50%;
+            float: left; }
+            html body .choice #training-canvas #FiPa .c1 button {
+              display: block;
+              background-color: #536DFE;
+              width: 100%;
+              height: 5em;
+              color: white;
+              border: rgba(0, 0, 0, 0);
+              transition: border-color .3s linear; }
+              html body .choice #training-canvas #FiPa .c1 button:hover {
+                border: solid 1px white;
+                transition: border-color .3s linear; }
+            html body .choice #training-canvas #FiPa .c1 .selected {
+              position: relative;
+              z-index: 5;
+              transition: .3s ease-in-out;
+              box-shadow: 2px 2px 2px 2px rgba(10, 10, 10, 0.5); }
+            html body .choice #training-canvas #FiPa .c1 .disabled {
+              z-index: -1;
+              transition: .3s ease-in-out;
+              background-color: #512DA8; }
+              html body .choice #training-canvas #FiPa .c1 .disabled:hover {
+                border: none; }
+          html body .choice #training-canvas #FiPa .c2 {
+            z-index: -1;
+            height: 100%;
+            width: 50%;
+            float: right; }
+            html body .choice #training-canvas #FiPa .c2 button {
+              display: block;
+              background-color: #536DFE;
+              width: 100%;
+              height: 5em;
+              color: white;
+              border: rgba(0, 0, 0, 0);
+              transition: border-color .3s linear; }
+              html body .choice #training-canvas #FiPa .c2 button:hover {
+                border: solid 1px white;
+                transition: border-color .3s linear; }
+            html body .choice #training-canvas #FiPa .c2 .selected {
+              position: relative;
+              z-index: 5;
+              transition: .3s ease-in-out;
+              box-shadow: 2px 2px 2px 2px rgba(10, 10, 10, 0.5); }
+            html body .choice #training-canvas #FiPa .c2 .disabled {
+              z-index: -1;
+              transition: .3s ease-in-out;
+              background-color: #512DA8; }
+              html body .choice #training-canvas #FiPa .c2 .disabled:hover {
+                border: none; }
+        html body .choice #training-canvas #MuCho #quest-div .quest {
+          color: black; }
+        html body .choice #training-canvas #MuCho #answer-div .c1 {
+          z-index: -1;
+          height: 100%;
+          width: 50%;
+          float: left; }
+          html body .choice #training-canvas #MuCho #answer-div .c1 button {
+            display: block;
+            background-color: #536DFE;
+            width: 100%;
+            height: 5em;
+            color: white;
+            border: rgba(0, 0, 0, 0);
+            transition: border-color .3s linear; }
+            html body .choice #training-canvas #MuCho #answer-div .c1 button:hover {
+              border: solid 1px white;
+              transition: border-color .3s linear; }
+          html body .choice #training-canvas #MuCho #answer-div .c1 .right-answ {
+            background-color: forestgreen;
+            transition: background-color .3s ease-in-out; }
+          html body .choice #training-canvas #MuCho #answer-div .c1 .wrong-answ {
+            background-color: darkred;
+            transition: background-color .3s ease-in-out; }
+        html body .choice #training-canvas #MuCho #answer-div .c2 {
+          z-index: -1;
+          height: 100%;
+          width: 50%;
+          float: right; }
+          html body .choice #training-canvas #MuCho #answer-div .c2 button {
+            display: block;
+            background-color: #536DFE;
+            width: 100%;
+            height: 5em;
+            color: white;
+            border: rgba(0, 0, 0, 0);
+            transition: border-color .3s linear; }
+            html body .choice #training-canvas #MuCho #answer-div .c2 button:hover {
+              border: solid 1px white;
+              transition: border-color .3s linear; }
+          html body .choice #training-canvas #MuCho #answer-div .c2 .right-answ {
+            background-color: forestgreen;
+            transition: background-color .3s ease-in-out; }
+          html body .choice #training-canvas #MuCho #answer-div .c2 .wrong-answ {
+            background-color: darkred;
+            transition: background-color .3s ease-in-out; }
+          html body .choice #training-canvas #MuCho #answer-div .c2 .disabled {
+            z-index: -1;
+            transition: .3s ease-in-out;
+            background-color: #512DA8; }
+            html body .choice #training-canvas #MuCho #answer-div .c2 .disabled:hover {
+              border: none; }
 
 /*# sourceMappingURL=main.css.map */

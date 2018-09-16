@@ -6,6 +6,13 @@
         <img src="/images/placeholders/profile-picture.png" class="profile-picture" alt="profile-picture">
     </div>
 
+    <div id="training-canvas" class="card">
+    <div id="FiPa">
+            <row  id="opt1"> <div class="c1"><button class="btn11">Lorem ipsum</button></div> <div class="c2"><button class="btn12">lorem ipsum</button></div></row>
+            <row  id="opt2"> <div class="c1"><button class="btn21">Lorem ipsum</button></div> <div class="c2"><button class="btn22">lorem ipsum</button></div></row>
+            <row  id="opt3"> <div class="c1"><button class="btn31">Lorem ipsum</button></div> <div class="c2"><button class="btn32">lorem ipsum</button></div></row>
+    </div>
+    </div>
 </div>
 
 <div class="container">

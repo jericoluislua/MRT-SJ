@@ -47,24 +47,18 @@ html{
       }
     }
     .choice{
-      height:100%;
       width:100%;
       #profile{
-        height: 80%;
+        height: 100%;
         width: 20em;
         margin-top: 0;
         margin-left: 10px;
+        margin-right: 10px;
         display:inline-block;
-        position: relative;
         .profile-picture{
           width:80%;
-<<<<<<< HEAD
           margin:0 auto;
-=======
-          margin-left: auto;
-          margin-right: auto;
           text-align: center;
->>>>>>> 893f4478433fe758451fa1bf34bc017c3967b592
           height:auto;
         }
         h1{
@@ -101,7 +95,153 @@ html{
             }
           }
           #answer-div{
+            input{
+              width: 80%;
+            }
+          }
+        }
+        #FiPa{
+          z-index:-1;
+          .c1{
+            z-index:-1;
+            height:100%;
+            width:50%;
+            float:left;
+            button{
 
+              display:block;
+              background-color: $accent-color;
+              width:100%;
+              height:5em;
+              color: white;
+              border: rgba(0,0,0,0);
+              transition: border-color .3s linear;
+              &:hover{
+                border: solid 1px rgba(255,255,255,1);
+                transition: border-color .3s linear;
+              }
+            }
+            .selected{
+              position: relative;
+              z-index:5;
+              transition: .3s ease-in-out;
+              box-shadow: 2px 2px 2px 2px rgba(10,10,10,0.5);
+            }
+            .disabled{
+              z-index: -1;
+              transition: .3s ease-in-out;
+              background-color: $primary-color-dark;
+              &:hover{
+                border: none;
+              }
+            }
+          }
+          .c2{
+            z-index: -1;
+            height:100%;
+            width:50%;
+            float:right;
+            button{
+              display:block;
+              background-color: $accent-color;
+              width:100%;
+              height:5em;
+              color: white;
+              border: rgba(0,0,0,0);
+              transition: border-color .3s linear;
+              &:hover{
+                border: solid 1px rgba(255,255,255,1);
+                transition: border-color .3s linear;
+              }
+            }
+            .selected{
+              position: relative;
+              z-index:5;
+              transition: .3s ease-in-out;
+              box-shadow: 2px 2px 2px 2px rgba(10,10,10,0.5);
+            }
+            .disabled{
+              z-index: -1;
+              transition: .3s ease-in-out;
+              background-color: $primary-color-dark;
+              &:hover{
+                border: none;
+              }
+            }
+
+          }
+        }
+        #MuCho{
+          #quest-div{
+            .quest{
+              color: black;
+            }
+          }
+          #answer-div{
+            .c1{
+              z-index:-1;
+              height:100%;
+              width:50%;
+              float:left;
+              button{
+
+                display:block;
+                background-color: $accent-color;
+                width:100%;
+                height:5em;
+                color: white;
+                border: rgba(0,0,0,0);
+                transition: border-color .3s linear;
+                &:hover{
+                  border: solid 1px rgba(255,255,255,1);
+                  transition: border-color .3s linear;
+                }
+              }
+              .right-answ{
+                background-color: forestgreen;
+                transition: background-color .3s ease-in-out;
+              }
+              .wrong-answ{
+                background-color: darkred;
+                transition: background-color .3s ease-in-out;
+              }
+            }
+            .c2{
+              z-index: -1;
+              height:100%;
+              width:50%;
+              float:right;
+              button{
+                display:block;
+                background-color: $accent-color;
+                width:100%;
+                height:5em;
+                color: white;
+                border: rgba(0,0,0,0);
+                transition: border-color .3s linear;
+                &:hover{
+                  border: solid 1px rgba(255,255,255,1);
+                  transition: border-color .3s linear;
+                }
+              }
+              .right-answ{
+                background-color: forestgreen;
+                transition: background-color .3s ease-in-out;
+              }
+              .wrong-answ{
+                background-color: darkred;
+                transition: background-color .3s ease-in-out;
+              }
+              .disabled{
+                z-index: -1;
+                transition: .3s ease-in-out;
+                background-color: $primary-color-dark;
+                &:hover{
+                  border: none;
+                }
+              }
+
+            }
           }
         }
       }

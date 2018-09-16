@@ -1,3 +1,4 @@
+<?php  if(!isset($_SESSION)){session_start();} if(isset($_SESSION['uid'])){header('Location: /choice');} ?>
 <div class="row">
 
         <div class="col s6">
