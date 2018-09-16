@@ -131,7 +131,6 @@ html {
         html body .choice #training-canvas #MuCho #quest-div .quest {
           color: black; }
         html body .choice #training-canvas #MuCho #answer-div .c1 {
-          z-index: -1;
           height: 100%;
           width: 50%;
           float: left; }
@@ -153,7 +152,6 @@ html {
             background-color: darkred;
             transition: background-color .3s ease-in-out; }
         html body .choice #training-canvas #MuCho #answer-div .c2 {
-          z-index: -1;
           height: 100%;
           width: 50%;
           float: right; }
@@ -175,7 +173,6 @@ html {
             background-color: darkred;
             transition: background-color .3s ease-in-out; }
           html body .choice #training-canvas #MuCho #answer-div .c2 .disabled {
-            z-index: -1;
             transition: .3s ease-in-out;
             background-color: #512DA8; }
             html body .choice #training-canvas #MuCho #answer-div .c2 .disabled:hover {

@@ -1,4 +1,4 @@
-var clickedbtns=0,c1btnstat=false,c2btnstat=false;
+var clickedbtns=0;
 
 function disablebtns() {
     if(clickedbtns == 2){
@@ -11,57 +11,71 @@ function disablebtns() {
     }
 }
 function disablecol(col) {
-  // if(col == "c1"){
-  //     while(!c2btnstat){
-  //         $(".c1 > button").each(function () {
-  //            $(this).prop('disabled',true);
-  //         });
-  //     }
-  // }
-  // if(col == "c2"){
-  //     while(!c1btnstat){
-  //         $(".c2 > button").each(function () {
-  //            $(this).prop('disabled',true);
-  //         });
-  //     }
-  // }
+   if(col == "c1"){
+
+           if($("#FiPa .c2 button").is('[disabled]')){
+               $("#FiPa .c2 button").each(function () {
+                   $(this).prop('disabled',false);
+               });
+               $(".disabled").prop('disabled',true);
+           }
+           else{
+               $("#FiPa .c1 button").each(function () {
+                   $(this).prop('disabled',true);
+               });
+           }
+   }
+   if(col == "c2"){
+
+           if($("#FiPa .c1 button").is('[disabled]')){
+               $("#FiPa .c1 button").each(function () {
+                   $(this).prop('disabled',false);
+               });
+               $(".disabled").prop('disabled',true);
+           }
+           else{
+               $("#FiPa .c2 button").each(function () {
+                   $(this).prop('disabled',true);
+               });
+           }
+   }
 }
 
 $(".btn11").click(function () {
  $(".btn11").addClass("selected");
  clickedbtns+=1;
- c1btnstat = true;
  disablebtns();
+ disablecol("c1");
 });
 $(".btn12").click(function () {
     $(".btn12").addClass("selected");
     clickedbtns+=1;
-    c2btnstat = true;
     disablebtns();
+    disablecol("c2");
 });
 $(".btn21").click(function () {
     $(".btn21").addClass("selected");
     clickedbtns+=1;
-    c1btnstat = true;
     disablebtns();
+    disablecol("c1");
 });
 $(".btn22").click(function () {
     $(".btn22").addClass("selected");
     clickedbtns+=1;
-    c2btnstat = true;
     disablebtns();
+    disablecol("c2");
 });
 $(".btn31").click(function () {
     $(".btn31").addClass("selected");
     clickedbtns+=1;
-    c1btnstat = true;
     disablebtns();
+    disablecol("c1");
 });
 $(".btn32").click(function () {
     $(".btn32").addClass("selected");
     clickedbtns+=1;
-    c2btnstat = true;
     disablebtns();
+    disablecol("c2");
 });
 $("#answer-div button").click(function () {
     $(this).addClass("right-answ");

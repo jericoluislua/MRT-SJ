@@ -179,7 +179,6 @@ html{
           }
           #answer-div{
             .c1{
-              z-index:-1;
               height:100%;
               width:50%;
               float:left;
@@ -207,7 +206,6 @@ html{
               }
             }
             .c2{
-              z-index: -1;
               height:100%;
               width:50%;
               float:right;
@@ -233,7 +231,6 @@ html{
                 transition: background-color .3s ease-in-out;
               }
               .disabled{
-                z-index: -1;
                 transition: .3s ease-in-out;
                 background-color: $primary-color-dark;
                 &:hover{
