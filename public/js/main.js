@@ -77,6 +77,13 @@ $(".btn32").click(function () {
     disablebtns();
     disablecol("c2");
 });
-$("#answer-div button").click(function () {
+$("#answer-div .solut").click(function () {
+    $("#answer-div button").addClass("wrong-answ");
+    $(this).removeClass("wrong-answ");
     $(this).addClass("right-answ");
+});
+$("#answer-div button").click(function (){
+    $(this).addClass("wrong-answ");
+    $("#answer-div .solut").addClass("right-answ");
+    $("#answer-div .solut").removeClass("wrong-answ");
 });
