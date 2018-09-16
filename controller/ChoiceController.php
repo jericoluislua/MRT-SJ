@@ -24,8 +24,8 @@ class ChoiceController
     }
     public function FiPa(){
         $view = new View('choice_FiPa');
-        $view->title = 'Choice';
-        $view->heading = 'Choice';
+        $view->title = 'Finding Pairs';
+        $view->heading = 'Choice: Finding Pairs';
         $userRepository = new UserRepository();
         if(!isset($_SESSION)){
             session_start();
@@ -37,8 +37,8 @@ class ChoiceController
     }
     public function FiBl(){
         $view = new View('choice_FiBl');
-        $view->title = 'Choice';
-        $view->heading = 'Choice';
+        $view->title = 'Fill in the Blanks';
+        $view->heading = 'Choice: Fill in the Blanks';
         $userRepository = new UserRepository();
         if(!isset($_SESSION)){
             session_start();
@@ -50,8 +50,8 @@ class ChoiceController
     }
     public function MuCho(){
         $view = new View('choice_MuCho');
-        $view->title = 'Choice';
-        $view->heading = 'Choice';
+        $view->title = 'Multiple Choice';
+        $view->heading = 'Choice: Multiple Choice';
         $userRepository = new UserRepository();
         if(!isset($_SESSION)){
             session_start();
