@@ -11,17 +11,26 @@ html {
     height: 100%;
     width: 100%; }
     html body #header {
-      display: inline-block;
+      display: block;
       margin: 0;
       padding: 0;
       height: 5em;
       width: 100%;
       background-color: #512DA8; }
-      html body #header h1 {
+      html body #header h3 {
         vertical-align: middle;
-        text-align: center;
+        float: left;
+        font-size: 4em;
         display: inherit;
         margin: 0; }
+      html body #header .logout-icon {
+        text-decoration: none;
+        float: right;
+        height: 2em;
+        width: auto; }
+        html body #header .logout-icon i {
+          font-size: 4em;
+          color: white; }
     html body .container .signbtn {
       height: 5em;
       margin: 5px;

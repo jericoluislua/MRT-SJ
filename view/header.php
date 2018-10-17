@@ -25,6 +25,9 @@
     <div id="header" class="nav-wrapper">
 
         <h3>ModuleRepetitionTool-SJ</h3>
+        <?php if(!isset($_SESSION)){session_start();}  if(isset($_SESSION['uid'])): ?>
+            <a href="/logout" class="logout-icon"><i class="material-icons" >exit_to_app</i></a>
+        <?php endif; ?>
     </div>
 
     <div class="container">
