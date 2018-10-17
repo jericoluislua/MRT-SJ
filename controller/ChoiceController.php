@@ -6,6 +6,7 @@
  * Time: 09:55
  */
 require_once '../repository/UserRepository.php';
+require_once '../repository/MuChoRepository.php';
 
 class ChoiceController
 {
@@ -58,7 +59,23 @@ class ChoiceController
         }
         if(isset($_SESSION['uid'])) {
             $view->uname = $userRepository->readById($_SESSION['uid'])->uname;
+            $muchoRepository = new MuChoRepository();
+            $questions = $muchoRepository->readAllQuestions();
+            print_r($questions);
+            $randomid = rand(0,sizeof($questions));
+            foreach($questions AS $question){
+                if($question->muchoid = $randomid){
+                    $randquest = $question;
+                }
+            }
+            $view->quest = $randquest->question;
+            $view->answ1 = $questions[rand(0,sizeof($question))]->answer;
+            $view->answ2 = $questions[rand(0,sizeof($question))]->answer;
+            $view->answ3 = $questions[rand(0,sizeof($question))]->answer;
+            $view->answ4 = $questions[rand(0,sizeof($question))]->answer;
         }
+
         $view->display();
     }
+
 }
