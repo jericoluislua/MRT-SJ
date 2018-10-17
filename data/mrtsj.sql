@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 08. Okt 2018 um 11:07
+-- Erstellungszeit: 17. Okt 2018 um 15:50
 -- Server-Version: 10.1.34-MariaDB
--- PHP-Version: 5.6.37
+-- PHP-Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -71,19 +71,15 @@ CREATE TABLE `user` (
   `uid` int(11) NOT NULL,
   `uname` varchar(50) NOT NULL,
   `pw` varchar(100) NOT NULL,
-  `score` int(11) DEFAULT NULL,
-  `isAdmin` tinyint(1) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `pb_path` varchar(50) DEFAULT NULL
+  `score` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `user`
 --
 
-INSERT INTO `user` (`uid`, `uname`, `pw`, `score`, `isAdmin`, `first_name`, `last_name`, `pb_path`) VALUES
-(3, 'SVRNM', '$2y$10$4CCYNywwSNckA7bm6f/lM.baQ7zNBobuAqPndwsWWIDCa0JKIBtha', NULL, 1, 'Sivakeerthan', 'Vamanarajasekaran', NULL);
+INSERT INTO `user` (`uid`, `uname`, `pw`, `score`) VALUES
+(2, 'SVRNM', '$2y$10$WCAFcsG8kVdNpnEIvDyQEOKscr0wmZxQo25vbhfv3bigQChGpuF1y', NULL);
 
 --
 -- Indizes der exportierten Tabellen
@@ -139,7 +135,7 @@ ALTER TABLE `mucho`
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
