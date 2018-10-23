@@ -53,29 +53,105 @@ class ChoiceController
         $view = new View('choice_MuCho');
         $view->title = 'Multiple Choice';
         $view->heading = 'Choice: Multiple Choice';
+        $points = $view->currpoints;
         $userRepository = new UserRepository();
         if(!isset($_SESSION)){
             session_start();
         }
         if(isset($_SESSION['uid'])) {
             $view->uname = $userRepository->readById($_SESSION['uid'])->uname;
-            $muchoRepository = new MuChoRepository();
-            $questions = $muchoRepository->readAllQuestions();
-            print_r($questions);
-            $randomid = rand(0,sizeof($questions));
-            foreach($questions AS $question){
-                if($question->muchoid = $randomid){
-                    $randquest = $question;
-                }
+
+
+            $quiz = $this->createQuiz();
+            if(!empty($quiz)) {
+                $view->quest = $quiz->quest;
+                $view->answ1 = $quiz->answ1;
+                $view->answ2 = $quiz->answ2;
+                $view->answ3 = $quiz->answ3;
+                $view->answ4 = $quiz->answ4;
+                $view->solut = $quiz->solut;
+                $view->id = $quiz->id;
+                $points += $this->getPoints();
+                $view->currpoints = $points;
             }
-            $view->quest = $randquest->question;
-            $view->answ1 = $questions[rand(0,sizeof($question))]->answer;
-            $view->answ2 = $questions[rand(0,sizeof($question))]->answer;
-            $view->answ3 = $questions[rand(0,sizeof($question))]->answer;
-            $view->answ4 = $questions[rand(0,sizeof($question))]->answer;
+            if($quiz == null){
+                echo "<script>
+                         $('#msg').css('display','block');
+                    </script>";
+            }
+
         }
 
         $view->display();
+    }
+    public function createQuiz(){
+         $questions = $this->deleteQuestion(null);
+        $randomid = rand(1, sizeof($questions));
+        $output = new stdClass();
+        if($questions != null || !empty($questions)) {
+            foreach ($questions AS $question) {
+                if ($question->muchoid == $randomid) {
+                    $output->quest = $question->question;
+                    $output->id = $question->muchoid;
+                    $solut = $question->answer;
+
+                }
+            }
+            $answers = array();
+            for ($i = 0; $i <= 2; $i++) {
+                if ($this->is_distinct($answers)) {
+                    $answers[$i] = $questions[rand(0, sizeof($questions) - 1)]->answer;
+                } else {
+                    $answers[$i] = $questions[rand(0, sizeof($questions) - 1)]->answer;
+                }
+            }
+            $answers[3] = $solut;
+            shuffle($answers);
+            $output->answ1 = $answers[0];
+            $output->answ2 = $answers[1];
+            $output->answ3 = $answers[2];
+            $output->answ4 = $answers[3];
+            $output->solut = $solut;
+            return $output;
+        }
+        else{
+            return null;
+        }
+    }
+    public function getPoints(){
+        if(isset($_GET['solved'])) {
+            $solved = htmlspecialchars($_GET['solved']);
+            $questions =  $this->deleteQuestion($solved);
+            foreach ($questions AS $question) {
+                if ($question->muchoid = $solved) {
+                    return $question->points;
+                }
+            }
+        }
+
+        return null;
+    }
+    public function deleteQuestion($id){
+        $muchoRepository = new MuChoRepository();
+        $questions = $muchoRepository->readAllQuestions();
+        if(isset($id)) {
+            $i = 0;
+            foreach ($questions AS $question) {
+                if ($question->muchoid = $id) {
+                    array_splice($questions, $i);
+                }
+                $i++;
+            }
+        }
+        return $questions;
+    }
+    function is_distinct($array) {
+        if(count($array) == count(array_unique($array, SORT_REGULAR))){
+           return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }

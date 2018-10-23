@@ -83,7 +83,22 @@ $("#answer-div .solut").click(function () {
     $(this).addClass("right-answ");
 });
 $("#answer-div button").click(function (){
-    $("#answer-div button").addClass("wrong-answ");
-    $("#answer-div .solut").addClass("right-answ");
-    $("#answer-div .solut").removeClass("wrong-answ");
+
+    $("#answer-div button").each(
+      function(){
+          console.log("Clicked:"+$(this).text()+"<br> Solut:"+$('.answ').text());
+          if($(this).text() == $('.answ').text()){
+
+              $(this).removeClass("wrong-answ");
+              $(this).addClass("right-answ");
+              window.location.href = './MuCho?solved='+ $('.quest').attr('id');
+          }
+          else{
+              $(this).addClass("wrong-answ");
+          }
+      }
+    );
+
+
+
 });
