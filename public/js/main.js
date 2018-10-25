@@ -91,7 +91,13 @@ $("#answer-div button").click(function (){
 
               $(this).removeClass("wrong-answ");
               $(this).addClass("right-answ");
-              window.location.href = './MuCho?solved='+ $('.quest').attr('id');
+              var i =0;
+              do {
+                  i++;
+               }while(i > 3);
+              if(i=3) {
+                  $(location).attr('href', './MuCho?solved=' + $('.quest').attr('id'));
+              }
           }
           else{
               $(this).addClass("wrong-answ");
