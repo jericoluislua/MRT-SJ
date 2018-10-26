@@ -38,11 +38,13 @@ class UserController
                         if(!isset($_SESSION['uid'])) {
                             session_start();
                             $_SESSION['uid'] = $user->uid;
+                            $_SESSION['points'] = 0;
                         }
                         else{
                             session_destroy();
                             session_start();
                             $_SESSION['uid'] = $user->id;
+                            $_SESSION['points'] = 0;
                         }
                         header('Location: /choice');
                     } else {

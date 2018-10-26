@@ -1,4 +1,5 @@
 var clickedbtns=0;
+var rightansw = false;
 
 function disablebtns() {
     if(clickedbtns == 2){
@@ -83,21 +84,21 @@ $("#answer-div .solut").click(function () {
     $(this).addClass("right-answ");
 });
 $("#answer-div button").click(function (){
-
+    if($(this).text() == $('.answ').text()){
+        $(this).removeClass("wrong-answ");
+        $(this).addClass("right-answ");
+        rightansw = true;
+    }
+    else{
+        $(this).addClass("wrong-answ");
+        rightansw = false;
+    }
     $("#answer-div button").each(
       function(){
           console.log("Clicked:"+$(this).text()+"<br> Solut:"+$('.answ').text());
           if($(this).text() == $('.answ').text()){
-
               $(this).removeClass("wrong-answ");
               $(this).addClass("right-answ");
-              var i =0;
-              do {
-                  i++;
-               }while(i > 3);
-              if(i=3) {
-                  $(location).attr('href', './MuCho?solved=' + $('.quest').attr('id'));
-              }
           }
           else{
               $(this).addClass("wrong-answ");
@@ -108,3 +109,10 @@ $("#answer-div button").click(function (){
 
 
 });
+$(document).ready(function () {
+    $('#mucho_next').click(function () {
+        $(location).attr('href', './MuCho?solved=' + $('.quest').attr('id')+'&corr='+rightansw);
+    });
+});
+
+

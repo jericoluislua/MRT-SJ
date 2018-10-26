@@ -71,8 +71,8 @@ class ChoiceController
                 $view->answ4 = $quiz->answ4;
                 $view->solut = $quiz->solut;
                 $view->id = $quiz->id;
-                $points += $this->getPoints();
-                $view->currpoints = $points;
+                $this->getPoints();
+                $view->currpoints = $_SESSION['points'];
             }
             if($quiz == null){
                 echo "<script>
@@ -94,16 +94,19 @@ class ChoiceController
                     $output->quest = $question->question;
                     $output->id = $question->muchoid;
                     $solut = $question->answer;
-
                 }
             }
             $answers = array();
             for ($i = 0; $i <= 2; $i++) {
-                if ($this->is_distinct($answers)) {
-                    $answers[$i] = $questions[rand(0, sizeof($questions) - 1)]->answer;
-                } else {
-                    $answers[$i] = $questions[rand(0, sizeof($questions) - 1)]->answer;
+                $answer = $questions[rand(0, sizeof($questions) - 1)]->answer;
+                if($answer != $solut && !in_array($answer,$answers)){
+                    $answers[$i] = $answer;
                 }
+                else{
+                    $i -= 1;
+                }
+
+
             }
             $answers[3] = $solut;
             shuffle($answers);
@@ -119,17 +122,31 @@ class ChoiceController
         }
     }
     public function getPoints(){
-        if(isset($_GET['solved'])) {
+        if(isset($_GET['solved']) && isset($_GET['corr'])) {
             $solved = htmlspecialchars($_GET['solved']);
-            $questions =  $this->deleteQuestion($solved);
-            foreach ($questions AS $question) {
-                if ($question->muchoid = $solved) {
-                    return $question->points;
-                }
+            $corr = htmlspecialchars($_GET['corr']);
+            if($corr == "false"){
+                return $_SESSION['points'];
             }
+            if($corr == "true"){
+                $muchoRepository = new MuChoRepository();
+                $questions = $muchoRepository->readAllQuestions();
+                foreach ($questions AS $question) {
+                        if ($question->muchoid = $solved) {
+                            $_SESSION['points'] += $question->points;
+                            return $_SESSION['points'];
+                        }
+                }
+                $this->deleteQuestion($solved);
+            }
+
+
+        }
+        else{
+           return $_SESSION['points'];
         }
 
-        return null;
+
     }
     public function deleteQuestion($id){
         $muchoRepository = new MuChoRepository();
@@ -138,20 +155,13 @@ class ChoiceController
             $i = 0;
             foreach ($questions AS $question) {
                 if ($question->muchoid = $id) {
-                    array_splice($questions, $i);
+                    unset($questions[$i]);
                 }
                 $i++;
             }
         }
         return $questions;
     }
-    function is_distinct($array) {
-        if(count($array) == count(array_unique($array, SORT_REGULAR))){
-           return true;
-        }
-        else{
-            return false;
-        }
-    }
+
 
 }
