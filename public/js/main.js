@@ -16,21 +16,23 @@ function disablebtns() {
 function disablecol(col) {
    if(col === "c1"){
 
-           if($("#FiPa .c2 button").is('[disabled]')){
-               $("#FiPa .c2 button").each(function () {
-                   $(this).prop('disabled',false);
-               });
-               $(".disabled").prop('disabled',true);
-           }
+       $("#FiPa .c2 button").each(function () {
+           $(this).prop('disabled',false);
+       });
+       $(".disabled").prop('disabled',true);
+       $("#FiPa .c1 button").each(function () {
+           $(this).prop('disabled', true);
+       })
    }
    if(col === "c2"){
 
-           if($("#FiPa .c1 button").is('[disabled]')){
-               $("#FiPa .c1 button").each(function () {
-                   $(this).prop('disabled',false);
-               });
-               $(".disabled").prop('disabled',true);
-           }
+       $("#FiPa .c1 button").each(function () {
+           $(this).prop('disabled',false);
+       });
+       $(".disabled").prop('disabled',true);
+       $("#FiPa .c2 button").each(function () {
+           $(this).prop('disabled', true);
+       })
    }
 }
 
@@ -109,7 +111,7 @@ $("#answer-div button").click(function (){
 });
 $(document).ready(function () {
     $('#mucho_next').click(function () {
-        $(location).attr('href', './MuCho?solved=' + $('.quest').attr('id')+'&corr='+rightansw);
+        $(location).attr('href', './MuCho?solved=' + $('.quest').attr('id') + '&corr=' + rightansw);
     });
 });
 
