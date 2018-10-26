@@ -40,6 +40,5 @@
         <div id="profile" class="card-panel">
             <h1 ><?=$uname?></h1>
             <img src="/images/placeholders/profile-picture.png" class="profile-picture" alt="profile-picture">
-            <p class="black-text">Points: <?=$currpoints?></p>
-        </div>
+
         <?php endif;?>

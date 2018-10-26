@@ -62,7 +62,7 @@ class ChoiceController
             $view->uname = $userRepository->readById($_SESSION['uid'])->uname;
             $view->currpoints = $_SESSION['points'];
 
-            $quiz = $this->createQuiz();
+            $quiz = $this->createQuizMuCho();
 
             if($quiz != null) {
                 $view->quest = $quiz->quest;
@@ -87,7 +87,7 @@ class ChoiceController
 
         $view->display();
     }
-    public function createQuiz(){
+    public function createQuizMuCho(){
 
         if(isset($_GET['solved'])){
             $solved = htmlspecialchars($_GET['solved']);
@@ -97,7 +97,7 @@ class ChoiceController
             $muchoRepository = new MuChoRepository();
             $_SESSION['questions'] = $muchoRepository->readAllQuestions();
         }
-         $questions = $this->deleteQuestion($solved);
+         $questions = $this->deleteQuestionMuCho($solved);
 
 
         $output = new stdClass();
@@ -183,7 +183,7 @@ class ChoiceController
 
 
     }
-    public function deleteQuestion($id){
+    public function deleteQuestionMuCho($id){
         $questions = $_SESSION['questions'];
         $muchoid = intval($id);
         if($muchoid != null) {
@@ -200,8 +200,6 @@ class ChoiceController
         else{
             return $questions;
         }
-
-
     }
     public function addPoints(){
         if(isset($_POST['add_points'])){

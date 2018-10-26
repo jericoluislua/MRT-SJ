@@ -1,6 +1,8 @@
 <?php if(!isset($_SESSION)){session_start();} if(isset($_SESSION['uid'])):?>
 
-
+      //last bit of profile
+            <p class="black-text">Points: <?=$currpoints?></p>
+        </div>
     <div id="training-canvas" class="card">
     <div id="FiPa">
             <row  id="opt1"> <div class="c1"><button class="btn11">Lorem ipsum</button></div> <div class="c2"><button class="btn12">lorem ipsum</button></div></row>

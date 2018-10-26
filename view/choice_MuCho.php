@@ -1,5 +1,7 @@
 <?php if(!isset($_SESSION)){session_start();} if(isset($_SESSION['uid'])):?>
-
+      //last bit of profile
+            <p class="black-text">Points: <?=$currpoints?></p>
+        </div>
     <div id="training-canvas" class="card">
         <div id="MuCho">
             <div id="quest-div">
@@ -21,9 +23,11 @@
                 <h1>Congrats!!</h1>
                 <span>You've finished this excercise and earned <?=$currpoints?> points.</span>
                 <p>Click this Button to add these points to your account.</p>
-                  <button id="add_points" name="add_points" type="submit" formmethod="post"  action="/choice/addPoints" class="btn btn-primary">
+                <form method="post"  action="/choice/addPoints" >
+                  <button id="add_points" name="add_points" type="submit" class="btn btn-primary">
                    Add <i class="material-icons">send</i>
                   </button>
+                  </form>
             </div>
     </div>
 
