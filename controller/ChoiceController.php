@@ -118,8 +118,6 @@ class ChoiceController
             else{
                 $randomid = reset($questions)->muchoid;
             }
-            print_r($questions);
-            print_r($randomid);
             $i=$randomid -1;
             foreach ($questions AS $question) {
                 if ($question->muchoid == $randomid) {
@@ -205,8 +203,8 @@ class ChoiceController
         if(isset($_POST['add_points'])){
             $userRepository = new UserRepository();
             $userRepository->updateScore($_SESSION['points'],$_SESSION['uid']);
-            session_unset($_SESSION['points']);
-            header('Location: /choice');
+            $_SESSION['points'] = null;
+           header('Location: /choice');
         }
     }
 

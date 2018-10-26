@@ -15,7 +15,7 @@
 
             <div class="btn-div">
                    <button id="mucho_next" onclick="Event.preventDefault()"  class="btn btn-primary">
-                   Next <i class="material-icons">send</i>
+                   Next
                   </button>
             </div>
         </div>
