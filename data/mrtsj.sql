@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 17. Okt 2018 um 15:50
+-- Erstellungszeit: 26. Okt 2018 um 11:56
 -- Server-Version: 10.1.34-MariaDB
 -- PHP-Version: 7.2.8
 
@@ -60,6 +60,17 @@ CREATE TABLE `mucho` (
   `answer` varchar(50) NOT NULL,
   `points` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `mucho`
+--
+
+INSERT INTO `mucho` (`muchoid`, `question`, `answer`, `points`) VALUES
+(1, 'Lorem Ipsum1?', 'Dolor1', 10),
+(2, 'Lorem Ipsum2?', 'Dolor2', 10),
+(3, 'Lorem Ipsum3?', 'Dolor3', 10),
+(4, 'Lorem Ipsum4?', 'Dolor4', 10),
+(5, 'Lorem Ipsum5?', 'Dolor5', 10);
 
 -- --------------------------------------------------------
 
@@ -129,7 +140,7 @@ ALTER TABLE `fipa`
 -- AUTO_INCREMENT für Tabelle `mucho`
 --
 ALTER TABLE `mucho`
-  MODIFY `muchoid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `muchoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT für Tabelle `user`
