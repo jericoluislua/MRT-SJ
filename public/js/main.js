@@ -22,11 +22,6 @@ function disablecol(col) {
                });
                $(".disabled").prop('disabled',true);
            }
-           else{
-               $("#FiPa .c1 button").each(function () {
-                   $(this).prop('disabled',true);
-               });
-           }
    }
    if(col === "c2"){
 
@@ -36,17 +31,12 @@ function disablecol(col) {
                });
                $(".disabled").prop('disabled',true);
            }
-           else{
-               $("#FiPa .c2 button").each(function () {
-                   $(this).prop('disabled',true);
-               });
-           }
    }
 }
 
 $(".btn11").click(function () {
     $(".btn11").addClass("selected");
-    $(".btn12").prop('disabled', true);
+    $(".btn11").prop('disabled', true);
     clickedbtns+=1;
     disablebtns();
     disablecol("c1");
