@@ -53,17 +53,18 @@ class ChoiceController
         $view = new View('choice_MuCho');
         $view->title = 'Multiple Choice';
         $view->heading = 'Choice: Multiple Choice';
-        $points = $view->currpoints;
+
         $userRepository = new UserRepository();
         if(!isset($_SESSION)){
             session_start();
         }
         if(isset($_SESSION['uid'])) {
             $view->uname = $userRepository->readById($_SESSION['uid'])->uname;
-
+            $view->currpoints = $_SESSION['points'];
 
             $quiz = $this->createQuiz();
-            if(!empty($quiz)) {
+
+            if($quiz != null) {
                 $view->quest = $quiz->quest;
                 $view->answ1 = $quiz->answ1;
                 $view->answ2 = $quiz->answ2;
@@ -72,33 +73,66 @@ class ChoiceController
                 $view->solut = $quiz->solut;
                 $view->id = $quiz->id;
                 $this->getPoints();
-                $view->currpoints = $_SESSION['points'];
+
             }
-            if($quiz == null){
-                echo "<script>
-                         $('#msg').css('display','block');
+            else{
+                $view->extra = "<script>
+                      $('#MuCho').css('display','none');
+    $('#msg').css('display','block');
                     </script>";
             }
 
         }
 
+
         $view->display();
     }
     public function createQuiz(){
-         $questions = $this->deleteQuestion(null);
-        $randomid = rand(1, sizeof($questions));
+
+        if(isset($_GET['solved'])){
+            $solved = htmlspecialchars($_GET['solved']);
+        }
+        else{
+            $solved = null;
+            $muchoRepository = new MuChoRepository();
+            $_SESSION['questions'] = $muchoRepository->readAllQuestions();
+        }
+         $questions = $this->deleteQuestion($solved);
+
+
         $output = new stdClass();
-        if($questions != null || !empty($questions)) {
+        if($questions != null) {
+            $_SESSION['questions'] =$questions;
+            if(sizeof($questions)>1) {
+
+                    $randomid = reset($questions)->muchoid;
+
+                   for($j =0;$j<=30;$j++) {
+                       $rand = rand(reset($questions)->muchoid || 1, sizeof($questions));
+                       if (array_key_exists($rand - 1, $questions)) {
+                           $randomid = $rand;
+                       }
+                     }
+
+            }
+            else{
+                $randomid = reset($questions)->muchoid;
+            }
+            print_r($questions);
+            print_r($randomid);
+            $i=$randomid -1;
             foreach ($questions AS $question) {
                 if ($question->muchoid == $randomid) {
-                    $output->quest = $question->question;
-                    $output->id = $question->muchoid;
-                    $solut = $question->answer;
+                    $output->quest = $questions[$i]->question;
+                    $output->id = $questions[$i]->muchoid;
+                    $solut = $questions[$i]->answer;
                 }
             }
+            $muchoRepository = new MuChoRepository();
+            $quest2 = $muchoRepository->readAllQuestions();
             $answers = array();
             for ($i = 0; $i <= 2; $i++) {
-                $answer = $questions[rand(0, sizeof($questions) - 1)]->answer;
+                $answer = $quest2[rand(0, sizeof($quest2) - 1)]->answer;
                 if($answer != $solut && !in_array($answer,$answers)){
                     $answers[$i] = $answer;
                 }
@@ -137,7 +171,8 @@ class ChoiceController
                             return $_SESSION['points'];
                         }
                 }
-                $this->deleteQuestion($solved);
+
+
             }
 
 
@@ -149,18 +184,32 @@ class ChoiceController
 
     }
     public function deleteQuestion($id){
-        $muchoRepository = new MuChoRepository();
-        $questions = $muchoRepository->readAllQuestions();
-        if(isset($id)) {
-            $i = 0;
-            foreach ($questions AS $question) {
-                if ($question->muchoid = $id) {
+        $questions = $_SESSION['questions'];
+        $muchoid = intval($id);
+        if($muchoid != null) {
+
+            foreach($questions AS $question) {
+                if ($question->muchoid == $muchoid){
+                    $i = array_search($question,$questions);
                     unset($questions[$i]);
+                    return $questions;
                 }
-                $i++;
             }
+
         }
-        return $questions;
+        else{
+            return $questions;
+        }
+
+
+    }
+    public function addPoints(){
+        if(isset($_POST['add_points'])){
+            $userRepository = new UserRepository();
+            $userRepository->updateScore($_SESSION['points'],$_SESSION['uid']);
+            session_unset($_SESSION['points']);
+            header('Location: /choice');
+        }
     }
 
 

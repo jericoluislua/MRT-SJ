@@ -116,4 +116,19 @@ class UserRepository extends Repository
         // Den gefundenen Datensatz zurückgeben
         return $row;
     }
+    public function updateScore($points,$user){
+        $oldscore = $this->readById($user)->score;
+        $newscore = $oldscore + $points;
+
+        $query = "UPDATE $this->tableName SET score = ? WHERE uid = ?";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('ii',$newscore, $user);
+
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+
+        return $statement->insert_id;
+    }
 }

@@ -186,6 +186,11 @@ html {
             background-color: #512DA8; }
             html body .choice #training-canvas #MuCho #answer-div .c2 .disabled:hover {
               border: none; }
+        html body .choice #training-canvas #msg {
+          padding: 10px;
+          color: black;
+          height: 50%;
+          width: 50%; }
       html body .choice .btn-div {
         max-width: 10%;
         max-height: 10%;

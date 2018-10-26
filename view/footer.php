@@ -11,6 +11,10 @@
 
         <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+        <?php if(isset($extra)){
+                echo $extra ;
+        }
+            ?>
         <?php
         if(!isset($_SESSION)) {
             session_start();
