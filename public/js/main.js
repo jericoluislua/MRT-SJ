@@ -2,7 +2,9 @@ var clickedbtns=0;
 var rightansw = false;
 
 function disablebtns() {
-    if(clickedbtns == 2){
+    if(clickedbtns === 2){
+
+        $(".selected").prop('disabled', true);
         $(".selected").each(function () {
             $(this).removeClass("selected");
             $(this).prop('disabled',true);
@@ -12,7 +14,7 @@ function disablebtns() {
     }
 }
 function disablecol(col) {
-   if(col == "c1"){
+   if(col === "c1"){
 
            if($("#FiPa .c2 button").is('[disabled]')){
                $("#FiPa .c2 button").each(function () {
@@ -26,7 +28,7 @@ function disablecol(col) {
                });
            }
    }
-   if(col == "c2"){
+   if(col === "c2"){
 
            if($("#FiPa .c1 button").is('[disabled]')){
                $("#FiPa .c1 button").each(function () {
@@ -43,37 +45,43 @@ function disablecol(col) {
 }
 
 $(".btn11").click(function () {
- $(".btn11").addClass("selected");
- clickedbtns+=1;
- disablebtns();
- disablecol("c1");
+    $(".btn11").addClass("selected");
+    $(".btn12").prop('disabled', true);
+    clickedbtns+=1;
+    disablebtns();
+    disablecol("c1");
 });
 $(".btn12").click(function () {
     $(".btn12").addClass("selected");
+    $(".btn12").prop('disabled', true);
     clickedbtns+=1;
     disablebtns();
     disablecol("c2");
 });
 $(".btn21").click(function () {
     $(".btn21").addClass("selected");
+    $(".btn21").prop('disabled', true);
     clickedbtns+=1;
     disablebtns();
     disablecol("c1");
 });
 $(".btn22").click(function () {
     $(".btn22").addClass("selected");
+    $(".btn22").prop('disabled', true);
     clickedbtns+=1;
     disablebtns();
     disablecol("c2");
 });
 $(".btn31").click(function () {
     $(".btn31").addClass("selected");
+    $(".btn31").prop('disabled', true);
     clickedbtns+=1;
     disablebtns();
     disablecol("c1");
 });
 $(".btn32").click(function () {
     $(".btn32").addClass("selected");
+    $(".btn32").prop('disabled', true);
     clickedbtns+=1;
     disablebtns();
     disablecol("c2");
