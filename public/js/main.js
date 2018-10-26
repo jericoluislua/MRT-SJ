@@ -113,6 +113,7 @@ $(document).ready(function () {
     $('#mucho_next').click(function () {
         $(location).attr('href', './MuCho?solved=' + $('.quest').attr('id') + '&corr=' + rightansw);
     });
+
 });
 
 
