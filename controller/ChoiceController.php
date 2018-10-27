@@ -21,7 +21,9 @@ class ChoiceController
             session_start();
         }
         if(isset($_SESSION['uid'])) {
-            $view->uname = $userRepository->readById($_SESSION['uid'])->uname;
+            $user =  $userRepository->readById($_SESSION['uid']);
+            $view->uname =$user->uname;
+            $view->points = $user->score;
         }
         $view->display();
     }
