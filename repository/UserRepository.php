@@ -131,4 +131,5 @@ class UserRepository extends Repository
 
         return $statement->insert_id;
     }
+
 }

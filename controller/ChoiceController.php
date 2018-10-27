@@ -21,7 +21,9 @@ class ChoiceController
             session_start();
         }
         if(isset($_SESSION['uid'])) {
-            $view->uname = $userRepository->readById($_SESSION['uid'])->uname;
+            $user =  $userRepository->readById($_SESSION['uid']);
+            $view->uname =$user->uname;
+            $view->points = $user->score;
         }
         $view->display();
     }
@@ -261,13 +263,13 @@ class ChoiceController
     }
 
     public function createQuizMuCho(){
-
+        $muchoRepository = new MuChoRepository();
     if(isset($_GET['solved'])){
         $solved = htmlspecialchars($_GET['solved']);
     }
     else{
         $solved = null;
-        $muchoRepository = new MuChoRepository();
+
         $_SESSION['mucho_questions'] = $muchoRepository->readAllQuestions();
     }
     $questions = $this->deleteQuestionMuCho($solved);
@@ -299,7 +301,6 @@ class ChoiceController
                 $solut = $questions[$i]->answer;
             }
         }
-        $muchoRepository = new MuChoRepository();
         $quest2 = $muchoRepository->readAllQuestions();
         $answers = array();
         for ($i = 0; $i <= 2; $i++) {
@@ -330,11 +331,16 @@ class ChoiceController
         if(isset($_GET['solved']) && isset($_GET['corr'])) {
             $solved = htmlspecialchars($_GET['solved']);
             $corr = htmlspecialchars($_GET['corr']);
+            $questions = $repo->readAllQuestions();
             if($corr == "false"){
-                return $_SESSION['points'];
+                foreach ($questions AS $question) {
+                    if ($question->muchoid = $solved) {
+                        $_SESSION['points'] -= $question->points;
+                        return $_SESSION['points'];
+                    }
+                }
             }
             if($corr == "true"){
-                $questions = $repo->readAllQuestions();
                 foreach ($questions AS $question) {
                         if ($question->muchoid = $solved) {
                             $_SESSION['points'] += $question->points;
