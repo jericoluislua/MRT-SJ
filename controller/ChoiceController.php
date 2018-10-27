@@ -38,7 +38,7 @@ class ChoiceController
             $view->currpoints = $_SESSION['points'];
             $quiz = $this->createQuizFiPa();
             if($quiz != null){
-                $view->left1 = $quiz->left1;
+                $view->left1 = "test";
                 $view->left2 = $quiz->left2;
                 $view->left3 = $quiz->left3;
                 $view->right1 = $quiz->right1;
