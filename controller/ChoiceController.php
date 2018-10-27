@@ -245,7 +245,13 @@ class ChoiceController
             $solved = htmlspecialchars($_GET['solved']);
             $corr = htmlspecialchars($_GET['corr']);
             if($corr == "false"){
-                return $_SESSION['points'];
+                $questions = $repo->readAllQuestions();
+                foreach ($questions AS $question) {
+                    if ($question->muchoid = $solved) {
+                        $_SESSION['points'] -= $question->points;
+                        return $_SESSION['points'];
+                    }
+                }
             }
             if($corr == "true"){
                 $questions = $repo->readAllQuestions();
