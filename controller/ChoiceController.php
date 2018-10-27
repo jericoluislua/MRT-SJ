@@ -35,6 +35,17 @@ class ChoiceController
         }
         if(isset($_SESSION['uid'])) {
             $view->uname = $userRepository->readById($_SESSION['uid'])->uname;
+            $view->currpoints = $_SESSION['points'];
+            $quiz = $this->createQuizFiPa();
+            if($quiz != null){
+                $view->left1 = $quiz->left1;
+                $view->left2 = $quiz->left2;
+                $view->left3 = $quiz->left3;
+                $view->right1 = $quiz->right1;
+                $view->right2 = $quiz->right2;
+                $view->right3 = $quiz->right3;
+                $view->id = $quiz->id;
+            }
         }
         $view->display();
     }
@@ -127,6 +138,128 @@ class ChoiceController
 
         $view->display();
     }
+    public function createQuizFiPa(){
+        if(isset($_GET['solved'])){
+            $solved = htmlspecialchars($_GET['solved']);
+        }
+        else{
+            $solved = null;
+            $fipaRepository = new FiPaRepository();
+            $_SESSION['fipa_questions'] = $fipaRepository->readAllQuestions();
+        }
+        $questions = $this->deleteQuestionFiPa($solved);
+
+        $output = new stdClass();
+        if($questions != null) {
+            $_SESSION['mucho_questions'] =$questions;
+            if(sizeof($questions)>1) {
+
+                $randomid = reset($questions)->fipaid;
+
+                for($j =0;$j<=30;$j++) {
+                    $rand = rand(reset($questions)->fipaid || 1, sizeof($questions));
+                    if (array_key_exists($rand - 1, $questions)) {
+                        $randomid = $rand;
+                    }
+                }
+
+            }
+            else{
+                $randomid = reset($questions)->fipaid;
+            }
+            $i=$randomid -1;
+            foreach ($questions AS $question) {
+                if ($question->fipaid == $randomid) {
+                    $output->id = $questions[$i]->fipaid;
+                    $solut = $questions[$i]->answer;
+                }
+            }
+            $fipaRepository = new FiPaRepository();
+            $quest2 = $fipaRepository->readAllQuestions();
+            $lefts = array();
+            $rights = array();
+            for ($i = 0; $i <= 2; $i++) {
+                $left = $quest2[rand(0, sizeof($quest2) - 1)]->left;
+                $right = $quest2[rand(0, sizeof($quest2) - 1)]->right;
+                if($left != $solut && !in_array($left,$lefts)){
+                    $lefts[$i] = $left;
+                }
+                else{
+                    $i -= 1;
+                }
+                if($right != $solut && !in_array($right,$rights)){
+                    $rights[$i] = $right;
+                }
+                else{
+                    $i -= 1;
+                }
+
+
+            }
+            $lefts[2] = $solut;
+            $rights[2] = $solut;
+            shuffle($lefts);
+            shuffle($rights);
+            $output->left1 = $lefts[0];
+            $output->left2 = $lefts[1];
+            $output->left3 = $lefts[2];
+            $output->right1 = $rights[0];
+            $output->right2 = $rights[1];
+            $output->right3 = $rights[2];
+            $output->solut = $solut;
+            return $output;
+        }
+        else{
+            return null;
+        }
+    }
+    public function createQuizFiBl(){
+
+        if(isset($_GET['solved'])){
+            $solved = htmlspecialchars($_GET['solved']);
+        }
+        else{
+            $solved = null;
+            if(!isset($_SESSION['fibl_questions'])||$_SESSION['fibl_questions'] == "null") {
+                $fiblRepository = new FiBlRepository();
+                $_SESSION['fibl_questions'] = $fiblRepository->readAllQuestions();
+            }
+        }
+        $questions = $this->deleteQuestionFiBl($solved);
+
+        $output = new stdClass();
+        if($questions != null) {
+            $_SESSION['fibl_questions'] =$questions;
+            if(sizeof($questions)>1) {
+
+                $randomid = reset($questions)->fiblid;
+
+                for($j =0;$j<=30;$j++) {
+                    $rand = rand(reset($questions)->fiblid || 1, sizeof($questions));
+                    if (array_key_exists($rand - 1, $questions)) {
+                        $randomid = $rand;
+                    }
+                }
+
+            }
+            else{
+                $randomid = reset($questions)->fiblid;
+            }
+            $i=$randomid -1;
+            foreach ($questions AS $question) {
+                if ($question->fiblid == $randomid) {
+                    $output->imgurl= $questions[$i]->exc_path;
+                    $output->id = $questions[$i]->fiblid;
+                    $output->answer = $questions[$i]->answer;
+                }
+            }
+            return $output;
+        }
+        else{
+            return null;
+        }
+    }
+
     public function createQuizMuCho(){
 
     if(isset($_GET['solved'])){
@@ -193,52 +326,6 @@ class ChoiceController
         return null;
     }
 }
-    public function createQuizFiBl(){
-
-        if(isset($_GET['solved'])){
-            $solved = htmlspecialchars($_GET['solved']);
-        }
-        else{
-            $solved = null;
-            if(!isset($_SESSION['fibl_questions'])||$_SESSION['fibl_questions'] == "null") {
-                $fiblRepository = new FiBlRepository();
-                $_SESSION['fibl_questions'] = $fiblRepository->readAllQuestions();
-            }
-        }
-        $questions = $this->deleteQuestionFiBl($solved);
-
-        $output = new stdClass();
-        if($questions != null) {
-            $_SESSION['fibl_questions'] =$questions;
-            if(sizeof($questions)>1) {
-
-                $randomid = reset($questions)->fiblid;
-
-                for($j =0;$j<=30;$j++) {
-                    $rand = rand(reset($questions)->fiblid || 1, sizeof($questions));
-                    if (array_key_exists($rand - 1, $questions)) {
-                        $randomid = $rand;
-                    }
-                }
-
-            }
-            else{
-                $randomid = reset($questions)->fiblid;
-            }
-            $i=$randomid -1;
-            foreach ($questions AS $question) {
-                if ($question->fiblid == $randomid) {
-                    $output->imgurl= $questions[$i]->exc_path;
-                    $output->id = $questions[$i]->fiblid;
-                    $output->answer = $questions[$i]->answer;
-                }
-            }
-            return $output;
-        }
-        else{
-            return null;
-        }
-    }
     public function getPoints($repo){
         if(isset($_GET['solved']) && isset($_GET['corr'])) {
             $solved = htmlspecialchars($_GET['solved']);
@@ -266,22 +353,18 @@ class ChoiceController
 
 
     }
-    public function deleteQuestionMuCho($id){
-        $questions = $_SESSION['mucho_questions'];
-        $muchoid = intval($id);
-        if($muchoid != null) {
+    public function deleteQuestionFiPa($id){
+        $questions = $_SESSION['fipa_questions'];
 
+        $fipaid = intval($id);
+        if($fipaid != null){
             foreach($questions AS $question) {
-                if ($question->muchoid == $muchoid){
+                if ($question->fipaid == $fipaid){
                     $i = array_search($question,$questions);
                     unset($questions[$i]);
                     return $questions;
                 }
             }
-
-        }
-        else{
-            return $questions;
         }
     }
     public function deleteQuestionFiBl($id){
@@ -303,12 +386,31 @@ class ChoiceController
             return $questions;
         }
     }
+    public function deleteQuestionMuCho($id){
+        $questions = $_SESSION['mucho_questions'];
+
+        $muchoid = intval($id);
+        if($muchoid != null) {
+
+            foreach($questions AS $question) {
+                if ($question->muchoid == $muchoid){
+                    $i = array_search($question,$questions);
+                    unset($questions[$i]);
+                    return $questions;
+                }
+            }
+
+        }
+        else{
+            return $questions;
+        }
+    }
     public function addPoints(){
         if(isset($_POST['add_points'])){
             $userRepository = new UserRepository();
             $userRepository->updateScore($_SESSION['points'],$_SESSION['uid']);
             $_SESSION['points'] = null;
-            $_SESSION['fibl_questions'] = "null";
+            $_SESSION['fibl_questions'] = null;
            header('Location: /choice');
         }
     }

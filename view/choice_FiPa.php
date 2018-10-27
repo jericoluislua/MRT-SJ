@@ -5,9 +5,9 @@
         </div>
     <div id="training-canvas" class="card">
     <div id="FiPa">
-            <row  id="opt1"> <div class="c1"><button class="btn11">Lorem ipsum</button></div> <div class="c2"><button class="btn12">lorem ipsum</button></div></row>
-            <row  id="opt2"> <div class="c1"><button class="btn21">Lorem ipsum</button></div> <div class="c2"><button class="btn22">lorem ipsum</button></div></row>
-            <row  id="opt3"> <div class="c1"><button class="btn31">Lorem ipsum</button></div> <div class="c2"><button class="btn32">lorem ipsum</button></div></row>
+            <row  id="opt1"> <div class="c1"><button class="btn11"><?= $left1 ?></button></div> <div class="c2"><button class="btn12"><?= $right1?></button></div></row>
+            <row  id="opt2"> <div class="c1"><button class="btn21"><?= $left2 ?></button></div> <div class="c2"><button class="btn22"><?= $right2?></button></div></row>
+            <row  id="opt3"> <div class="c1"><button class="btn31"><?= $left3 ?></button></div> <div class="c2"><button class="btn32"><?= $right3?></button></div></row>
     </div>
     </div>
 </div>
