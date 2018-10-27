@@ -128,13 +128,13 @@ class ChoiceController
         $view->display();
     }
     public function createQuizMuCho(){
-
+        $muchoRepository = new MuChoRepository();
     if(isset($_GET['solved'])){
         $solved = htmlspecialchars($_GET['solved']);
     }
     else{
         $solved = null;
-        $muchoRepository = new MuChoRepository();
+
         $_SESSION['mucho_questions'] = $muchoRepository->readAllQuestions();
     }
     $questions = $this->deleteQuestionMuCho($solved);
@@ -166,7 +166,6 @@ class ChoiceController
                 $solut = $questions[$i]->answer;
             }
         }
-        $muchoRepository = new MuChoRepository();
         $quest2 = $muchoRepository->readAllQuestions();
         $answers = array();
         for ($i = 0; $i <= 2; $i++) {
