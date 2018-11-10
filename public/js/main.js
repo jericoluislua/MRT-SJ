@@ -1,17 +1,41 @@
 var clickedbtns=0;
 var rightansw = false;
+var points = 0;
 
 function disablebtns() {
+    var btns  = [];
     if(clickedbtns === 2){
 
         $(".selected").prop('disabled', true);
         $(".selected").each(function () {
-            $(this).removeClass("selected");
             $(this).prop('disabled',true);
             $(this).addClass("disabled");
+            btns.push($(this).attr('name'));
         });
+
+
+        console.log("btn1:"+btns[0]);
+        console.log("btn2:"+btns[1]);
+        if(btns[0] === btns[1]){
+            $(".selected").each(function () {
+                $(this).removeClass("selected");
+                $(this).addClass("right-answ");
+                points += parseInt($(this).attr('points'));
+            });
+        }
+        else{
+            $(".selected").each(function () {
+                $(this).removeClass("selected");
+                $(this).addClass("wrong-answ");
+            });
+        }
+
         clickedbtns = 0;
+        if($(".right-answ").length + $(".wrong-answ").length === 6){
+            $(location).attr('href', './checkFiPa?points='+points+'&solved='+btns[0]);
+        }
     }
+
 }
 function disablecol(col) {
    if(col === "c1"){
@@ -78,6 +102,7 @@ $(".btn32").click(function () {
     disablebtns();
     disablecol("c2");
 });
+
 $("#answer-div .solut").click(function () {
     $("#answer-div button").addClass("wrong-answ");
     $(this).removeClass("wrong-answ");

@@ -52,4 +52,19 @@ class FiPaRepository extends Repository
 
         return $rows[0];
     }
+    public function readByRight($right)
+    {
+
+        $query = "SELECT element_1 FROM {$this->tableName} WHERE element_2=?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('s', $right);
+        $statement->execute();
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+        $row = $result->fetch_object();
+        $result->close();
+        return $row;
+    }
 }

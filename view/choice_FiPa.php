@@ -5,9 +5,9 @@
         </div>
     <div id="training-canvas" class="card">
     <div id="FiPa">
-            <row  id="opt1"> <div class="c1"><button class="btn11"><?= $left1 ?></button></div> <div class="c2"><button class="btn12"><?= $right1?></button></div></row>
-            <row  id="opt2"> <div class="c1"><button class="btn21"><?= $left2 ?></button></div> <div class="c2"><button class="btn22"><?= $right2?></button></div></row>
-            <row  id="opt3"> <div class="c1"><button class="btn31"><?= $left3 ?></button></div> <div class="c2"><button class="btn32"><?= $right3?></button></div></row>
+            <row  id="opt1"> <div class="c1"><button class="btn11" name="<?=$left1->id?>" points="<?=$left1->point?>"><?= $left1->string ?></button></div> <div class="c2"><button class="btn12" name="<?=$right1->id?>" points="<?=$right1->point?>"><?= $right1->string?></button></div></row>
+            <row  id="opt2"> <div class="c1"><button class="btn21" name="<?=$left2->id?>" points="<?=$left2->point?>"><?= $left2->string ?></button></div> <div class="c2"><button class="btn22" name="<?=$right2->id?>" points="<?=$right2->point?>"><?= $right2->string?></button></div></row>
+            <row  id="opt3"> <div class="c1"><button class="btn31" name="<?=$left3->id?>" points="<?=$left3->point?>"><?= $left3->string ?></button></div> <div class="c2"><button class="btn32" name="<?=$right3->id?>" points="<?=$right3->point?>"><?= $right3->string?></button></div></row>
     </div>
     </div>
 </div>

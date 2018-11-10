@@ -110,6 +110,12 @@ html {
               background-color: #512DA8; }
               html body .choice #training-canvas #FiPa .c1 .disabled:hover {
                 border: none; }
+            html body .choice #training-canvas #FiPa .c1 .right-answ {
+              background-color: forestgreen !important;
+              transition: background-color .3s ease-in-out; }
+            html body .choice #training-canvas #FiPa .c1 .wrong-answ {
+              background-color: darkred !important;
+              transition: background-color .3s ease-in-out; }
           html body .choice #training-canvas #FiPa .c2 {
             z-index: -1;
             height: 100%;
@@ -137,6 +143,12 @@ html {
               background-color: #512DA8; }
               html body .choice #training-canvas #FiPa .c2 .disabled:hover {
                 border: none; }
+            html body .choice #training-canvas #FiPa .c2 .right-answ {
+              background-color: forestgreen !important;
+              transition: background-color .3s ease-in-out; }
+            html body .choice #training-canvas #FiPa .c2 .wrong-answ {
+              background-color: darkred !important;
+              transition: background-color .3s ease-in-out; }
         html body .choice #training-canvas #MuCho #quest-div .quest {
           color: black; }
         html body .choice #training-canvas #MuCho #answer-div .c1 {

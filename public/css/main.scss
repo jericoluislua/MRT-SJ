@@ -146,6 +146,14 @@ html{
                 border: none;
               }
             }
+            .right-answ{
+              background-color: forestgreen !important;
+              transition: background-color .3s ease-in-out;
+            }
+            .wrong-answ{
+              background-color: darkred !important;
+              transition: background-color .3s ease-in-out;
+            }
           }
           .c2{
             z-index: -1;
@@ -179,8 +187,17 @@ html{
                 border: none;
               }
             }
+            .right-answ{
+              background-color: forestgreen !important;
+              transition: background-color .3s ease-in-out;
+            }
+            .wrong-answ{
+              background-color: darkred !important;
+              transition: background-color .3s ease-in-out;
+            }
 
           }
+
         }
         #MuCho{
           #quest-div{
