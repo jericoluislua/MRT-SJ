@@ -33,7 +33,7 @@ class ChoiceController
     {
         $view = new View('choice_FiPa');
         $view->title = 'Finding Pairs';
-        $view->heading = 'Choice: Finding Pairs';
+        $view->heading = '<a href="" onclick="returnToChoice();" class="returnButton">Choice:</a> Finding Pairs';
         $userRepository = new UserRepository();
         if (!isset($_SESSION)) {
             session_start();

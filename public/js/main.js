@@ -141,4 +141,13 @@ $(document).ready(function () {
 
 });
 
+ function returnToChoice() {
+    if(window.confirm("Do you really want to return to Home? (progress won't be saved)")){
+        $(location).attr('href','/');
+    }
+    else{
+        return false;
+    }
+}
+
 
