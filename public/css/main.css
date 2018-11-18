@@ -41,6 +41,12 @@ html {
         vertical-align: center; }
     html body .container h1 {
       padding-left: 1.37em; }
+    html body .container .returnButton {
+      color: white;
+      border-bottom: 1px solid white; }
+      html body .container .returnButton:hover {
+        cursor: pointer;
+        border-bottom: none; }
     html body .choice {
       width: 100%; }
       html body .choice #profile {

@@ -3,7 +3,7 @@ return array(
 
     // Datebankkonfiguration
     'database' => array(
-        'host'     => 'localhost',
+        'host'     => 'project-sj.local',
         'username' => 'root',
         'password' => '',
         'database' => 'mrtsj',

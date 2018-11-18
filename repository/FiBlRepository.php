@@ -26,7 +26,6 @@ class FiBlRepository extends Repository
         while ($row = $result->fetch_object()) {
             $rows[] = $row;
         }
-
         return $rows;
     }
     public function getAnswer($fiblid){

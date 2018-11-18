@@ -56,6 +56,14 @@ html{
       h1{
         padding-left: 1.37em;
       }
+      .returnButton{
+        color: white;
+        border-bottom: 1px solid white;
+        &:hover{
+          cursor: pointer;
+          border-bottom:none;
+        }
+      }
     }
     .choice{
       width:100%;

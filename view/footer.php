@@ -27,6 +27,9 @@
         <?php endforeach;
                 endif;
                 $_SESSION['err'] = null; ?>
+        <script>
+            console.log("count:"+<?=count($_SESSION['fipa_questions'])?>);
+        </script>
 
   </body>
 </html>

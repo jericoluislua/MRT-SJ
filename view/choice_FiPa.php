@@ -9,6 +9,16 @@
             <row  id="opt2"> <div class="c1"><button class="btn21" name="<?=$left2->id?>" points="<?=$left2->point?>"><?= $left2->string ?></button></div> <div class="c2"><button class="btn22" name="<?=$right2->id?>" points="<?=$right2->point?>"><?= $right2->string?></button></div></row>
             <row  id="opt3"> <div class="c1"><button class="btn31" name="<?=$left3->id?>" points="<?=$left3->point?>"><?= $left3->string ?></button></div> <div class="c2"><button class="btn32" name="<?=$right3->id?>" points="<?=$right3->point?>"><?= $right3->string?></button></div></row>
     </div>
+            <div id="msg">
+                <h1>Congrats!!</h1>
+                <span>You've finished this excercise and earned <?=$currpoints?> points.</span>
+                <p>Click this Button to add these points to your account.</p>
+                <form method="post"  action="/choice/addPoints" >
+                  <button id="add_points" name="add_points" type="submit" class="btn btn-primary">
+                   Add <i class="material-icons">send</i>
+                  </button>
+                  </form>
+            </div>
     </div>
 </div>
 

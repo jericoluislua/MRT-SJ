@@ -33,7 +33,7 @@ class ChoiceController
     {
         $view = new View('choice_FiPa');
         $view->title = 'Finding Pairs';
-        $view->heading = '<a href="" onclick="returnToChoice();" class="returnButton">Choice:</a> Finding Pairs';
+        $view->heading = '<a onclick="returnToChoice();" class="returnButton">Choice:</a> Finding Pairs';
         $userRepository = new UserRepository();
         if (!isset($_SESSION)) {
             session_start();
@@ -51,6 +51,13 @@ class ChoiceController
                 $view->right2 = $quiz->right2;
                 $view->right3 = $quiz->right3;
             }
+            else {
+            $view->extra = "<script>
+                      $('#FiPa').css('display','none');
+                      $('#msg').css('display','block');
+                    </script>";
+            }
+
         }
         $view->display();
     }
@@ -59,7 +66,7 @@ class ChoiceController
     {
         $view = new View('choice_FiBl');
         $view->title = 'Fill in the Blanks';
-        $view->heading = 'Choice: Fill in the Blanks';
+        $view->heading = '<a onclick="returnToChoice();" class="returnButton">Choice:</a> Fill in the Blanks';
         $userRepository = new UserRepository();
 
         if (!isset($_SESSION)) {
@@ -119,9 +126,9 @@ class ChoiceController
 
         }
             $points = htmlspecialchars($_GET['points']);
+            print_r($_SESSION['fipa_questions']);
             $_SESSION['points'] += $points;
-            $_SESSION['fibl_questions'] = $this->deleteQuestionFiPa($solved);
-            header('Location: /choice/FiPa');
+            header('Location: /choice/FiPa?solved='.$solved);
 
     }
 
@@ -129,7 +136,7 @@ class ChoiceController
     {
         $view = new View('choice_MuCho');
         $view->title = 'Multiple Choice';
-        $view->heading = 'Choice: Multiple Choice';
+        $view->heading = '<a onclick="returnToChoice();" class="returnButton">Choice:</a> Multiple Choice';
 
         $userRepository = new UserRepository();
         if (!isset($_SESSION)) {
@@ -166,11 +173,22 @@ class ChoiceController
 
     public function createQuizFiPa()
     {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+        if (isset($_GET['solved'])) {
+            $solved = htmlspecialchars($_GET['solved']);
+        } else {
+            $solved = null;
+            $fipaRepository = new FiPaRepository();
+            $_SESSION['fipa_questions'] = $fipaRepository->readAllQuestions();
 
-        $questions = $_SESSION['fipa_questions'];
+        }
+        $questions = $this->deleteQuestionFiPa($solved);
+
         $output = new stdClass();
-        if ($questions != null) {
-            $_SESSION['fipa_questions'] = $questions;
+        if (count($questions) >= 6 && $questions != null) {
+            $_SESSION['fipa_questions'] =$questions;
             $lefts = array();
             $l = array();
             $rights = array();
@@ -190,7 +208,7 @@ class ChoiceController
                 }
             }
             for ($i = 0; $i <= 2; $i++) {
-                $right = $questions[rand(0,sizeof($questions)-1)];
+                $right = $questions[rand(0, sizeof($questions)-1)];
                 if (!in_array($right->element_2, $r) && in_array($right->element_1, $l)) {
                     $r[$i] = $right->element_2;
                    $temp2 = new stdClass();
@@ -225,10 +243,9 @@ class ChoiceController
             $solved = htmlspecialchars($_GET['solved']);
         } else {
             $solved = null;
-            if (!isset($_SESSION['fibl_questions']) || $_SESSION['fibl_questions'] == "null") {
-                $fiblRepository = new FiBlRepository();
-                $_SESSION['fibl_questions'] = $fiblRepository->readAllQuestions();
-            }
+            $fiblRepository = new FiBlRepository();
+            $_SESSION['fibl_questions'] = $fiblRepository->readAllQuestions();
+
         }
         $questions = $this->deleteQuestionFiBl($solved);
 
@@ -240,7 +257,7 @@ class ChoiceController
                 $randomid = reset($questions)->fiblid;
 
                 for ($j = 0; $j <= 30; $j++) {
-                    $rand = rand(reset($questions)->fiblid || 1, sizeof($questions));
+                    $rand = rand($randomid || 1, sizeof($questions));
                     if (array_key_exists($rand - 1, $questions)) {
                         $randomid = $rand;
                     }
@@ -361,20 +378,26 @@ class ChoiceController
 
     public function deleteQuestionFiPa($id)
     {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+        if(!isset($_SESSION['fipa_questions'])) {
+          $FiPaRepository = new FiPaRepository();
+          $_SESSION['fipa_questions'] = $FiPaRepository->readAll();
+        }
         $questions = $_SESSION['fipa_questions'];
-
         $fipaid = intval($id);
         if ($fipaid != null) {
             foreach ($questions AS $question) {
                 if ($question->fipaid == $fipaid) {
                     $i = array_search($question, $questions);
                     unset($questions[$i]);
-                    return $questions;
+                    return array_values($questions);
                 }
             }
         }
         else{
-            return $questions;
+            return array_values($questions);
         }
     }
 
@@ -383,7 +406,6 @@ class ChoiceController
         $questions = $_SESSION['fibl_questions'];
         $fiblid = intval($id);
         if ($fiblid != null) {
-
             foreach ($questions AS $question) {
                 if ($question->fiblid == $fiblid) {
                     $i = array_search($question, $questions);
