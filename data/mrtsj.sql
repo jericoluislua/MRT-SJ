@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 18. Nov 2018 um 19:12
+-- Erstellungszeit: 18. Nov 2018 um 19:50
 -- Server-Version: 10.1.34-MariaDB
 -- PHP-Version: 5.6.37
 
@@ -40,7 +40,7 @@ CREATE TABLE `fibl` (
 --
 
 INSERT INTO `fibl` (`fiblid`, `exc_path`, `answer`, `points`) VALUES
-(5, '/images/fibl/FiBl_img/1.png', '/choice', 5),
+(5, '/images/fibl/FiBl_img/1.png', 'Location: /choice', 5),
 (6, '/images/fibl/FiBl_img/2.png', 'include', 5),
 (7, '/images/fibl/FiBl_img/3.png', 'require', 5),
 (8, '/images/fibl/FiBl_img/4.png', '$_POST[\'username\'];', 10),
