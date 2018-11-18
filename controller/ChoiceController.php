@@ -111,8 +111,7 @@ class ChoiceController
                 $this->doError("The Correct Answer was:".$quizanswer);
             }
             $this->getPoints($fiblRepository);
-            $_SESSION['fibl_questions'] = $this->deleteQuestionFiBl($_GET['id']);
-            header('Location: /choice/FiBl');
+            header('Location: /choice/FiBl?solved='.$_GET['solved']);
         }
 
     }
@@ -260,14 +259,16 @@ class ChoiceController
                 for ($j = 0; $j <= 30; $j++) {
                     $rand = rand($randomid || 1, sizeof($questions));
                     if (array_key_exists($rand, $questions)) {
-                        $randomid = $rand;
+                        $randomid = $questions[$rand]->fiblid;
+                        $i = $rand;
                     }
                 }
 
             } else {
                 $randomid = reset($questions)->fiblid;
+                $i = reset($questions);
+
             }
-            $i = $randomid - 1;
             foreach ($questions AS $question) {
                 if ($question->fiblid == $randomid) {
                     $output->imgurl = $questions[$i]->exc_path;
@@ -302,16 +303,18 @@ class ChoiceController
                 $randomid = reset($questions)->muchoid;
 
                 for ($j = 0; $j <= 30; $j++) {
-                    $rand = rand(reset($questions)->muchoid || 1, sizeof($questions));
-                    if (array_key_exists($rand - 1, $questions)) {
-                        $randomid = $rand;
+                    $rand = rand($randomid||1, sizeof($questions));
+                    if (array_key_exists($rand, $questions)) {
+                        $randomid = $questions[$rand]->muchoid;
+                        $i = $rand;
                     }
                 }
 
             } else {
                 $randomid = reset($questions)->muchoid;
+                $i = reset($questions);
             }
-            $i = $randomid - 1;
+
             foreach ($questions AS $question) {
                 if ($question->muchoid == $randomid) {
                     $output->quest = $questions[$i]->question;
@@ -352,7 +355,7 @@ class ChoiceController
             $questions = $repo->readAllQuestions();
             if ($corr == "false") {
                 foreach ($questions AS $question) {
-                    if ($question->muchoid = $solved) {
+                    if ($question->muchoid = $solved || $question->fiblid = $solved) {
                         $_SESSION['points'] -= $question->points;
                         return $_SESSION['points'];
                     }
@@ -360,7 +363,7 @@ class ChoiceController
             }
             if ($corr == "true") {
                 foreach ($questions AS $question) {
-                    if ($question->muchoid = $solved) {
+                    if ($question->muchoid = $solved || $question->fiblid = $solved) {
                         $_SESSION['points'] += $question->points;
                         return $_SESSION['points'];
                     }
@@ -411,12 +414,12 @@ class ChoiceController
                 if ($question->fiblid == $fiblid) {
                     $i = array_search($question, $questions);
                     unset($questions[$i]);
-                    return array_values($questions);
+                    return $questions;
                 }
             }
 
         } else {
-            return array_values($questions);
+            return $questions;
         }
     }
 
