@@ -8,8 +8,8 @@ require_once '../repository/UserRepository.php';
 
 class UserController
 {
-    public $err = array();
-    public $pregex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/";
+    private $err = array();
+    private $pregex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/";
     public function index()
     {
         $view = new View('user_login');

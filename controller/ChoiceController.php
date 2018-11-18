@@ -12,6 +12,7 @@ require_once '../repository/FiBlRepository.php';
 
 class ChoiceController
 {
+    private $err = array();
     public function index()
     {
         $view = new View('choice_index');
@@ -107,7 +108,7 @@ class ChoiceController
             }
             if ($answer != $quizanswer) {
                 $_GET['corr'] = "false";
-
+                $this->doError("The Correct Answer was:".$quizanswer);
             }
             $this->getPoints($fiblRepository);
             $_SESSION['fibl_questions'] = $this->deleteQuestionFiBl($_GET['id']);
@@ -126,8 +127,8 @@ class ChoiceController
 
         }
             $points = htmlspecialchars($_GET['points']);
-            print_r($_SESSION['fipa_questions']);
             $_SESSION['points'] += $points;
+
             header('Location: /choice/FiPa?solved='.$solved);
 
     }
@@ -258,7 +259,7 @@ class ChoiceController
 
                 for ($j = 0; $j <= 30; $j++) {
                     $rand = rand($randomid || 1, sizeof($questions));
-                    if (array_key_exists($rand - 1, $questions)) {
+                    if (array_key_exists($rand, $questions)) {
                         $randomid = $rand;
                     }
                 }
@@ -410,12 +411,12 @@ class ChoiceController
                 if ($question->fiblid == $fiblid) {
                     $i = array_search($question, $questions);
                     unset($questions[$i]);
-                    return $questions;
+                    return array_values($questions);
                 }
             }
 
         } else {
-            return $questions;
+            return array_values($questions);
         }
     }
 
@@ -449,6 +450,10 @@ class ChoiceController
             header('Location: /choice');
         }
     }
-
+    public function doError($error){
+        $this->err = array_fill(0,1,$error);
+        session_start();
+        $_SESSION['err'] = $this->err;
+    }
 
 }
