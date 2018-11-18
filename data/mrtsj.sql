@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 18. Nov 2018 um 17:46
+-- Erstellungszeit: 18. Nov 2018 um 19:12
 -- Server-Version: 10.1.34-MariaDB
 -- PHP-Version: 5.6.37
 
@@ -98,11 +98,6 @@ CREATE TABLE `mucho` (
 --
 
 INSERT INTO `mucho` (`muchoid`, `question`, `answer`, `points`) VALUES
-(1, 'Lorem Ipsum1?', 'Dolor1', 10),
-(2, 'Lorem Ipsum2?', 'Dolor2', 10),
-(3, 'Lorem Ipsum3?', 'Dolor3', 10),
-(4, 'Lorem Ipsum4?', 'Dolor4', 10),
-(5, 'Lorem Ipsum5?', 'Dolor5', 10),
 (6, 'Illegal DB-Access, through entering SQL-Queries into Input-Fields.', 'SQL-Injection', 10),
 (7, 'Illegal Data-Access, through inserting malicious scripts.', 'Cross-Site-Scripting', 10),
 (8, 'Illegal Data-Access, through stealing a session.', 'Session Hijacking', 10),
