@@ -3,7 +3,7 @@ return array(
 
     // Datebankkonfiguration
     'database' => array(
-        'host'     => 'localhost',
+        'host'     => 'mrt-sj.jericolua.ch',
         'username' => 'root',
         'password' => '',
         'database' => 'mrtsj',
