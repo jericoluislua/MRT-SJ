@@ -431,12 +431,12 @@ class ChoiceController
                 if ($question->muchoid == $muchoid) {
                     $i = array_search($question, $questions);
                     unset($questions[$i]);
-                    return $questions;
+                    return array_values($questions);
                 }
             }
 
         } else {
-            return $questions;
+            return array_values($questions);
         }
     }
 
