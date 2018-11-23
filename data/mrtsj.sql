@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2018 at 05:43 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.8
+-- Erstellungszeit: 23. Nov 2018 um 20:50
+-- Server-Version: 10.1.34-MariaDB
+-- PHP-Version: 5.6.37
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mrtsj`
+-- Datenbank: `mrtsj`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fibl`
+-- Tabellenstruktur für Tabelle `fibl`
 --
 
 CREATE TABLE `fibl` (
@@ -36,7 +36,7 @@ CREATE TABLE `fibl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `fibl`
+-- Daten für Tabelle `fibl`
 --
 
 INSERT INTO `fibl` (`fiblid`, `exc_path`, `answer`, `points`) VALUES
@@ -54,7 +54,7 @@ INSERT INTO `fibl` (`fiblid`, `exc_path`, `answer`, `points`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fipa`
+-- Tabellenstruktur für Tabelle `fipa`
 --
 
 CREATE TABLE `fipa` (
@@ -65,7 +65,7 @@ CREATE TABLE `fipa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `fipa`
+-- Daten für Tabelle `fipa`
 --
 
 INSERT INTO `fipa` (`fipaid`, `element_1`, `element_2`, `points`) VALUES
@@ -83,7 +83,7 @@ INSERT INTO `fipa` (`fipaid`, `element_1`, `element_2`, `points`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mucho`
+-- Tabellenstruktur für Tabelle `mucho`
 --
 
 CREATE TABLE `mucho` (
@@ -94,7 +94,7 @@ CREATE TABLE `mucho` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mucho`
+-- Daten für Tabelle `mucho`
 --
 
 INSERT INTO `mucho` (`muchoid`, `question`, `answer`, `points`) VALUES
@@ -110,7 +110,7 @@ INSERT INTO `mucho` (`muchoid`, `question`, `answer`, `points`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Tabellenstruktur für Tabelle `user`
 --
 
 CREATE TABLE `user` (
@@ -118,73 +118,72 @@ CREATE TABLE `user` (
   `uname` varchar(50) NOT NULL,
   `pw` varchar(100) NOT NULL,
   `score` int(11) DEFAULT NULL,
-  `isAdmin` tinyint(1) DEFAULT NULL
+  `isAdmin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Daten für Tabelle `user`
 --
 
 INSERT INTO `user` (`uid`, `uname`, `pw`, `score`, `isAdmin`) VALUES
-(2, 'SVRNM', '$2y$10$WCAFcsG8kVdNpnEIvDyQEOKscr0wmZxQo25vbhfv3bigQChGpuF1y', 100, 1),
-(3, 'jericoluislua', '$2y$10$jwn87JjTWbKpwLwZ3tSe6ut.4FmrV.602RMisOnBsPxh7yjbPxR1.', NULL, 1),
-(4, 'gibbix4life', '$2y$10$vm/eMCs.OY9dMpQ/52f3ve4xM.kmXNfz35oI0QxBGky0Ce5s3NyLG', NULL, 0);
+(2, 'SVRNM', '$2y$10$WCAFcsG8kVdNpnEIvDyQEOKscr0wmZxQo25vbhfv3bigQChGpuF1y', 5626, 1),
+(3, 'Test', '$2y$10$Ys0iG5d4Yc06hrxVN0tBiesXlh6NdeB4aNLYWXyeaZKBGTo4TYgda', NULL, 0);
 
 --
--- Indexes for dumped tables
+-- Indizes der exportierten Tabellen
 --
 
 --
--- Indexes for table `fibl`
+-- Indizes für die Tabelle `fibl`
 --
 ALTER TABLE `fibl`
   ADD PRIMARY KEY (`fiblid`);
 
 --
--- Indexes for table `fipa`
+-- Indizes für die Tabelle `fipa`
 --
 ALTER TABLE `fipa`
   ADD PRIMARY KEY (`fipaid`);
 
 --
--- Indexes for table `mucho`
+-- Indizes für die Tabelle `mucho`
 --
 ALTER TABLE `mucho`
   ADD PRIMARY KEY (`muchoid`);
 
 --
--- Indexes for table `user`
+-- Indizes für die Tabelle `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`uid`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT for table `fibl`
+-- AUTO_INCREMENT für Tabelle `fibl`
 --
 ALTER TABLE `fibl`
   MODIFY `fiblid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `fipa`
+-- AUTO_INCREMENT für Tabelle `fipa`
 --
 ALTER TABLE `fipa`
   MODIFY `fipaid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `mucho`
+-- AUTO_INCREMENT für Tabelle `mucho`
 --
 ALTER TABLE `mucho`
   MODIFY `muchoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
