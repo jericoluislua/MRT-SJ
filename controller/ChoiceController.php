@@ -148,7 +148,7 @@ class ChoiceController
 
             $quiz = $this->createQuizMuCho();
 
-            if ($quiz != null) {
+            if ($quiz != null || !empty($quiz) || count($quiz) > 1) {
                 $view->quest = $quiz->quest;
                 $view->answ1 = $quiz->answ1;
                 $view->answ2 = $quiz->answ2;
@@ -287,18 +287,33 @@ class ChoiceController
         $muchoRepository = new MuChoRepository();
         if (isset($_GET['solved'])) {
             $solved = htmlspecialchars($_GET['solved']);
+            if(isset($_GET['corr'])) {
+                $string = htmlspecialchars($_GET['corr']);
+                if($string = 'true'){
+                    $corr = true;
+                }
+                else{
+                    $corr = false;
+                }
+            }else{
+                $corr = false;
+            }
         } else {
             $solved = null;
-
+            $corr = false;
             $_SESSION['mucho_questions'] = $muchoRepository->readAllQuestions();
         }
-        $questions = $this->deleteQuestionMuCho($solved);
-
+        if($corr == true) {
+            $questions = $this->deleteQuestionMuCho($solved);
+        }
+        else{
+            $questions = $this->deleteQuestionMuCho(null);
+        }
 
         $output = new stdClass();
-        if ($questions != null) {
+        if (count($questions) > 1) {
             $_SESSION['mucho_questions'] = $questions;
-            if (sizeof($questions) > 1) {
+            if (count($questions) > 2) {
 
                 $randomid = reset($questions)->muchoid;
 
@@ -312,7 +327,7 @@ class ChoiceController
 
             } else {
                 $randomid = reset($questions)->muchoid;
-                $i = reset($questions);
+                $i = array_search(reset($questions),$questions);
             }
 
             foreach ($questions AS $question) {
@@ -428,7 +443,7 @@ class ChoiceController
         $questions = $_SESSION['mucho_questions'];
 
         $muchoid = intval($id);
-        if ($muchoid != null) {
+        if ($id != null) {
 
             foreach ($questions AS $question) {
                 if ($question->muchoid == $muchoid) {

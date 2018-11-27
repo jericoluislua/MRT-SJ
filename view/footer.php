@@ -15,11 +15,6 @@
                 echo $extra ;
         }
             ?>
-        <script>
-            console.log("FiBlCount: "+<?=count($_SESSION['fibl_questions'])?>);
-            console.log("FiBlContent:"+<?=json_encode(var_export($_SESSION['fibl_questions'], true))?>);
-            console.log("MuChoCount: "+<?=count($_SESSION['mucho_questions'])?>);
-        </script>
         <?php
         if(!isset($_SESSION)) {
             session_start();
@@ -32,9 +27,6 @@
         <?php endforeach;
                 endif;
                 $_SESSION['err'] = null; ?>
-        <script>
-            console.log("count:"+<?=count($_SESSION['fipa_questions'])?>);
-        </script>
 
   </body>
 </html>
