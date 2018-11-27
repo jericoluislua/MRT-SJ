@@ -1,5 +1,6 @@
 <?php if(!isset($_SESSION)){session_start();} if(isset($_SESSION['uid'])):?>
-//last bit of profile
+<!--last bit of profile-->
+<br>
 <span class="black-text">Score: <?=$points?></span>
 </div>
     <div id="training-canvas" class="card">

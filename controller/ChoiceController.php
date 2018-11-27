@@ -69,7 +69,6 @@ class ChoiceController
         $view->title = 'Fill in the Blanks';
         $view->heading = '<a onclick="returnToChoice();" class="returnButton">Choice:</a> Fill in the Blanks';
         $userRepository = new UserRepository();
-
         if (!isset($_SESSION)) {
             session_start();
         }

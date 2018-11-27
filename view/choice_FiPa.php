@@ -1,6 +1,7 @@
 <?php if(!isset($_SESSION)){session_start();} if(isset($_SESSION['uid'])):?>
 
-      //last bit of profile
+      <!--last bit of profile-->
+      <br>
             <p class="black-text">Points: <?=$currpoints?></p>
         </div>
     <div id="training-canvas" class="card">

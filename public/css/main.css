@@ -16,6 +16,7 @@ html {
       padding: 0;
       height: 5em;
       width: 100%;
+      color: #ffffff;
       background-color: #512DA8; }
       html body #header h3 {
         vertical-align: middle;
@@ -42,8 +43,8 @@ html {
     html body .container h1 {
       padding-left: 1.37em; }
     html body .container .returnButton {
-      color: white;
-      border-bottom: 1px solid white; }
+      color: #ffffff;
+      border-bottom: 1px solid #ffffff; }
       html body .container .returnButton:hover {
         cursor: pointer;
         border-bottom: none; }
