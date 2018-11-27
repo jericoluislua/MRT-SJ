@@ -120,7 +120,7 @@ $("#answer-div button").click(function (){
     }
     $("#answer-div button").each(
       function(){
-          console.log("Clicked:"+$(this).text()+"<br> Solut:"+$('.answ').text());
+
           if($(this).text() == $('.answ').text()){
               $(this).removeClass("wrong-answ");
               $(this).addClass("right-answ");
