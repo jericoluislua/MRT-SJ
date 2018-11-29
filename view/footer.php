@@ -8,7 +8,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script type="text/javascript" src="/js/main.js"></script>
-
+        <script> console.log("MuChoCount"+<?=count($_SESSION['mucho_questions'])?>)</script>
         <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
         <?php if(isset($extra)){

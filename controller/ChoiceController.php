@@ -27,6 +27,7 @@ class ChoiceController
             $view->uname = $user->uname;
             $view->points = $user->score;
         }
+        $_SESSION['points'] = 0;
         $view->display();
     }
 
@@ -129,6 +130,17 @@ class ChoiceController
 
             header('Location: /choice/FiPa?solved='.$solved);
 
+    }
+    public function checkMuCho(){
+        if(isset($_GET['corr'])) {
+            $quizanswer = "<script> var elements =document.getElementsByClassName('.answ'); document.writeln(elements[0].innerHTML); </script>";
+            $muchoRepository = new MuChoRepository();
+            if ($_GET['corr'] == "false") {
+                $this->doError("The Correct Answer was:" . $quizanswer);
+            }
+            $this->getPoints($muchoRepository);
+            header('Location: /choice/MuCho?solved=' . $_GET['solved']);
+        }
     }
 
     public function MuCho()
@@ -286,28 +298,14 @@ class ChoiceController
         $muchoRepository = new MuChoRepository();
         if (isset($_GET['solved'])) {
             $solved = htmlspecialchars($_GET['solved']);
-            if(isset($_GET['corr'])) {
-                $string = htmlspecialchars($_GET['corr']);
-                if($string = 'true'){
-                    $corr = true;
-                }
-                else{
-                    $corr = false;
-                }
-            }else{
-                $corr = false;
-            }
         } else {
             $solved = null;
             $corr = false;
             $_SESSION['mucho_questions'] = $muchoRepository->readAllQuestions();
         }
-        if($corr == true) {
             $questions = $this->deleteQuestionMuCho($solved);
-        }
-        else{
-            $questions = $this->deleteQuestionMuCho(null);
-        }
+
+
 
         $output = new stdClass();
         if (count($questions) > 1) {
@@ -368,20 +366,43 @@ class ChoiceController
             $corr = htmlspecialchars($_GET['corr']);
             $questions = $repo->readAllQuestions();
             if ($corr == "false") {
-                foreach ($questions AS $question) {
-                    if ($question->muchoid = $solved | $question->fiblid = $solved) {
-                        $_SESSION['points'] -= $question->points;
+                if(isset(reset($questions)->fiblid)) {
+                    foreach ($questions AS $question) {
+                        if ($question->fiblid == $solved) {
+                            $_SESSION['points'] -= $question->points;
+                        }
                     }
                 }
+                elseif(isset(reset($questions)->muchoid)){
+                    foreach ($questions AS $question) {
+                        if ($question->muchoid == $solved) {
+                            $_SESSION['points'] -= $question->points;
+                        }
+                    }
+                    }
+                else{
+                       return $_SESSION['points'];
+                    }
+
             }
             if ($corr == "true") {
-                foreach ($questions AS $question) {
-                    if ($question->muchoid = $solved | $question->fiblid = $solved) {
-                        $_SESSION['points'] += $question->points;
+                if(isset($questions[0]->fiblid)) {
+                    foreach ($questions AS $question) {
+                        if ($question->fiblid == $solved) {
+                            $_SESSION['points'] += $question->points;
+                        }
                     }
                 }
-
-
+                elseif(isset($questions[0]->muchoid)){
+                    foreach ($questions AS $question) {
+                        if ($question->muchoid == $solved) {
+                            $_SESSION['points'] += $question->points;
+                        }
+                    }
+                }
+                else{
+                    return $_SESSION['points'];
+                }
             }
             return $_SESSION['points'];
 
