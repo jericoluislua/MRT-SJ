@@ -369,22 +369,21 @@ class ChoiceController
             $questions = $repo->readAllQuestions();
             if ($corr == "false") {
                 foreach ($questions AS $question) {
-                    if ($question->muchoid = $solved || $question->fiblid = $solved) {
+                    if ($question->muchoid = $solved | $question->fiblid = $solved) {
                         $_SESSION['points'] -= $question->points;
-                        return $_SESSION['points'];
                     }
                 }
             }
             if ($corr == "true") {
                 foreach ($questions AS $question) {
-                    if ($question->muchoid = $solved || $question->fiblid = $solved) {
+                    if ($question->muchoid = $solved | $question->fiblid = $solved) {
                         $_SESSION['points'] += $question->points;
-                        return $_SESSION['points'];
                     }
                 }
 
 
             }
+            return $_SESSION['points'];
 
 
         } else {
