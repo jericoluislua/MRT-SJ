@@ -130,7 +130,7 @@ html {
             float: right; }
             html body .choice #training-canvas #FiPa .c2 button {
               display: block;
-              background-color: #536DFE;
+              background-color: #2bbbad;
               width: 100%;
               height: 5em;
               color: white;
@@ -164,7 +164,7 @@ html {
           float: left; }
           html body .choice #training-canvas #MuCho #answer-div .c1 button {
             display: block;
-            background-color: #536DFE;
+            background-color: #2bbbad;
             width: 100%;
             height: 5em;
             color: white;
@@ -185,7 +185,7 @@ html {
           float: right; }
           html body .choice #training-canvas #MuCho #answer-div .c2 button {
             display: block;
-            background-color: #536DFE;
+            background-color: #2bbbad;
             width: 100%;
             height: 5em;
             color: white;
