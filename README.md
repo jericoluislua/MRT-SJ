@@ -16,4 +16,4 @@ Multiple Choice: A phrase/question will be shown and there are four choices but 
 
 Finding Pairs: You have three pairs and you need to pair all of them.
 
-Each question has its own difficulty, that means the points given will also differ on the question.
+Each question has its own difficulty, that means the points given/reduce will also differ on the question.
